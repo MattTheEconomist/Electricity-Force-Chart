@@ -1,0 +1,22 @@
+.groupingBtn {
+  width: 6rem;
+  margin: 3%;
+  background-color: rgb(206, 197, 197);
+  border-radius: 5px;
+  border: white;
+  height: 2rem;
+}
+
+.groupingBtn:focus {
+  background-color: #b89c9c;
+}
+
+#forceViz {
+  background-color: aqua;
+  padding: 1rem;
+}
+
+#forceSVG {
+  margin: 1rem;
+  padding: 2rem;
+}

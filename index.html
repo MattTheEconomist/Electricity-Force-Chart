@@ -2,11 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>D3: Force layout</title>
+    <title>Force Chart</title>
     <script type="text/javascript" src="d3.js"></script>
-  </head>
-  <body>
+
     <script src="test.js" type="module"></script>
     <script src="./data/stateData.js" type="module"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="forceViz"></div>
+    <div id="controlPanel">
+      <span>Change Grouping</span>
+      <table>
+        <tr>
+          <td>
+            <button class="groupingBtn" id="groupRegion">Region</button>
+          </td>
+          <td>
+            <button class="groupingBtn" id="groupIndustry">Industry</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="groupingBtn" id="groupGrowth">Growth</button>
+          </td>
+          <td>
+            <button class="groupingBtn" id="groupSize">Size</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="groupingBtn" id="groupDefault">Default</button>
+          </td>
+        </tr>
+      </table>
+    </div>
   </body>
 </html>
