@@ -1,11 +1,15 @@
 import { stateData } from "./data/stateData.js";
 
-// console.log(stateData);
+import { xPositionCall, yPositionCall } from "./controlPanel.js";
 
-//Width and height
+import { graphDimensions } from "./graphDimensions.js";
+
+const width = graphDimensions.width,
+  height = graphDimensions.height,
+  focalXdistance = graphDimensions.focalXdistance,
+  focalYdistance = graphDimensions.focalYdistance;
+
 let groupingSelected = "groupDefault";
-const width = 700;
-const height = 500;
 
 //Initialize a simple force layout, using the nodes and edges in dataset
 let simulation = d3
@@ -14,25 +18,13 @@ let simulation = d3
   .force(
     "x",
     d3.forceX().x((d) => {
-      if (groupingSelected === "groupDefault") {
-        // console.log("called default from force");
-        return defaultX(d);
-      }
-      if (groupingSelected === "groupRegion") {
-        console.log("called grouping from force");
-        return regionGroupingsX(d);
-      }
+      return xPositionCall[groupingSelected](d);
     })
   )
   .force(
     "y",
     d3.forceY().y((d) => {
-      if (groupingSelected === "groupDefault") {
-        return defaultY(d);
-      }
-      if (groupingSelected === "groupRegion") {
-        return regionGroupingsY(d);
-      }
+      return yPositionCall[groupingSelected](d);
     })
   )
   .force(
@@ -71,7 +63,9 @@ nodes.append("title").text(function (d) {
 });
 
 //Every time the simulation "ticks", this will be called
-simulation.on("tick", function () {
+simulation.on("tick", ticked);
+
+function ticked() {
   nodes
     .attr("cx", function (d) {
       return d.x;
@@ -79,7 +73,7 @@ simulation.on("tick", function () {
     .attr("cy", function (d) {
       return d.y;
     });
-});
+}
 
 function radiusCalc(pct) {
   return pct * 3;
@@ -95,40 +89,7 @@ function changeGrouping(el) {
   groupingSelected = el.currentTarget.id;
 
   console.log("grouping changed", groupingSelected);
-  simulation.alpha(0.5).restart();
+  simulation.alpha(0.35).restart();
   simulation.force("x").initialize(stateData);
   simulation.force("y").initialize(stateData);
-}
-
-function regionGroupingsX(d) {
-  console.log(d.region);
-
-  if (d.region === "Northeast" || d.region === "South") {
-    // hardcoded poz for now
-    return 500;
-  }
-  if (d.region === "West" || d.region === "Midwest") {
-    return 50;
-  }
-
-  // console.log(d.region);
-}
-
-function regionGroupingsY(d) {
-  if (d.region === ("Northeast" || "Midwest")) {
-    // hardcoded poz for now
-    return 50;
-  }
-  if (d.region === ("West" || "South")) {
-    return 300;
-  }
-}
-
-function defaultX(d) {
-  // return width / 2;
-  return 350;
-}
-
-function defaultY(d) {
-  return 250;
 }
