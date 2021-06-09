@@ -1,0 +1,52 @@
+name,State,gdp,region,Electricity_Generated,co2_Electric_Emissions,Renewable_share
+California,CA,2622731,West,1608,40874.00,0.140
+Texas,TX,1599283,South,4035,217556.00,0.070
+New York,NY,1500055,Northeast,1237,24807.00,0.130
+Florida,FL,926049,South,2024,98945.00,0.070
+Illinois,IL,796012,Midwest,1906,63036.00,0.070
+Pennsylvania,PA,719834,Northeast,2005,77357.00,0.060
+Ohio,OH,626622,Midwest,1180,68113.00,0.040
+New Jersey,NJ,575331,Northeast,669,18869.00,0.040
+Georgia,GA,531302,South,1141,51074.00,0.110
+North Carolina,NC,521621,South,1238,47372.00,0.100
+Massachusetts,MA,505776,Northeast,332,8519.00,0.070
+Virginia,VA,492932,South,853,29965.00,0.080
+Michigan,MI,490238,Midwest,1141,57232.00,0.090
+Washington,WA,476770,West,1061,14628.00,0.460
+Maryland,MD,382437,South,415,13109.00,0.070
+Indiana,IN,347249,Midwest,1093,77844.00,0.070
+Minnesota,MN,339096,Midwest,596,25291.00,0.160
+Tennessee,TN,331868,South,794,27328.00,0.090
+Colorado,CO,322644,West,535,33912.00,0.110
+Wisconsin,WI,313088,Midwest,631,35179.00,0.110
+Arizona,AZ,305849,West,1066,43562.00,0.120
+Missouri,MO,299113,Midwest,862,57516.00,0.060
+Connecticut,CT,259918,Northeast,342,9517.00,0.070
+Louisiana,LA,236999,South,681,48116.00,0.040
+Oregon,OR,228886,West,550,11029.00,0.490
+South Carolina,SC,209859,South,981,25110.00,0.100
+Alabama,AL,205625,South,1282,50842.00,0.150
+Kentucky,KY,196681,South,797,58805.00,0.060
+Iowa,IA,185183,Midwest,582,28989.00,0.290
+Oklahoma,OK,181278,South,760,28239.00,0.190
+Utah,UT,157671,West,369,28316.00,0.070
+Kansas,KS,150576,Midwest,524,20884.00,0.190
+Nevada,NV,146278,West,330,13921.00,0.160
+DistrictofColumbia,DC,126478,South,0,110.00,0.020
+Arkansas,AR,121383,South,621,32514.00,0.110
+Nebraska,NE,117446,Midwest,377,23660.00,0.210
+Mississippi,MS,108495,South,513,25018.00,0.060
+New Mexico,NM,93594,West,307,20386.00,0.140
+Hawaii,HI,84671,West,89.7,7337.00,0.110
+New Hampshire,NH,77208,Northeast,173,1952.00,0.190
+West Virginia,WV,72861,South,673,56823.00,0.060
+Delaware,DE,71453,South,44.9,2650.00,0.030
+Idaho,ID,68377,West,157,2293.00,0.320
+Maine,ME,59295,Northeast,95.5,1823.00,0.410
+Rhode Island,RI,57529,Northeast,63.3,2996.00,0.050
+North Dakota,ND,53453,Midwest,448,28668.00,0.240
+Alaska,AK,50404,West,55.6,3470.00,0.040
+SouthDakota,SD,48354,Midwest,117,3289.00,0.380
+Montana,MT,46227,West,284,16348.00,0.340
+Wyoming,WY,38328,West,479,39199.00,0.100
+Vermont,VT,31091,Northeast,22,7.00,0.320

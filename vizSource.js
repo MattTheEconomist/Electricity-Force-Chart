@@ -4,6 +4,14 @@ import { xPositionCall, yPositionCall } from "./controlPanel.js";
 
 import { graphDimensions } from "./graphDimensions.js";
 
+// let testData;
+// fetch("./data/testData.json")
+//   .then((res) => res.json())
+//   .then((json) => (testData = json))
+//   .then(() => console.log(testData));
+
+// console.log(testData);
+
 const width = graphDimensions.width,
   height = graphDimensions.height,
   focalXdistance = graphDimensions.focalXdistance,
@@ -14,23 +22,26 @@ let groupingSelected = "groupDefault";
 //Initialize a simple force layout, using the nodes and edges in dataset
 let simulation = d3
   .forceSimulation(stateData)
+  // .forceSimulation(testData)
   .force("charge", d3.forceManyBody().strength(1))
   .force(
     "x",
     d3.forceX().x((d) => {
       return xPositionCall[groupingSelected](d);
+      // return 100;
     })
   )
   .force(
     "y",
     d3.forceY().y((d) => {
       return yPositionCall[groupingSelected](d);
+      // return 100;
     })
   )
   .force(
     "collision",
     d3.forceCollide().radius(function (d) {
-      return radiusCalc(d.pctNation);
+      return radiusCalc(d.co2_electric_emissions);
     })
   );
 
@@ -48,10 +59,11 @@ const nodes = svg
   .selectAll("circle")
   .attr("id", "forceSVG")
   .data(stateData)
+  // .data(testData)
   .enter()
   .append("circle")
   .attr("r", (d) => {
-    return radiusCalc(d.pctNation);
+    return radiusCalc(d.co2_electric_emissions);
   })
   .style("fill", function (d, i) {
     return colors(i);
@@ -59,7 +71,7 @@ const nodes = svg
 
 //Add a simple tooltip
 nodes.append("title").text(function (d) {
-  return d.state;
+  return d.State;
 });
 
 //Every time the simulation "ticks", this will be called
@@ -75,8 +87,9 @@ function ticked() {
     });
 }
 
-function radiusCalc(pct) {
-  return pct * 3;
+function radiusCalc(val) {
+  return val / 5000;
+  // return val;
 }
 
 const groupingButtons = document.getElementsByClassName("groupingBtn");
