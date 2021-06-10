@@ -4,14 +4,6 @@ import { xPositionCall, yPositionCall } from "./controlPanel.js";
 
 import { graphDimensions } from "./graphDimensions.js";
 
-// let testData;
-// fetch("./data/testData.json")
-//   .then((res) => res.json())
-//   .then((json) => (testData = json))
-//   .then(() => console.log(testData));
-
-// console.log(testData);
-
 const width = graphDimensions.width,
   height = graphDimensions.height,
   focalXdistance = graphDimensions.focalXdistance,
@@ -23,7 +15,7 @@ let groupingSelected = "groupDefault";
 let simulation = d3
   .forceSimulation(stateData)
   // .forceSimulation(testData)
-  .force("charge", d3.forceManyBody().strength(1))
+  .force("charge", d3.forceManyBody().strength(1.8))
   .force(
     "x",
     d3.forceX().x((d) => {
@@ -41,7 +33,7 @@ let simulation = d3
   .force(
     "collision",
     d3.forceCollide().radius(function (d) {
-      return radiusCalc(d.co2_electric_emissions);
+      return radiusCalc(d.electricityGenerated);
     })
   );
 
@@ -63,7 +55,7 @@ const nodes = svg
   .enter()
   .append("circle")
   .attr("r", (d) => {
-    return radiusCalc(d.co2_electric_emissions);
+    return radiusCalc(d.electricityGenerated);
   })
   .style("fill", function (d, i) {
     return colors(i);
@@ -88,9 +80,15 @@ function ticked() {
 }
 
 function radiusCalc(val) {
-  return val / 5000;
+  return val / 90;
   // return val;
 }
+
+stateData.forEach((row) => {
+  if (row.population_cat > 3) {
+    console.log(row);
+  }
+});
 
 const groupingButtons = document.getElementsByClassName("groupingBtn");
 
@@ -102,7 +100,7 @@ function changeGrouping(el) {
   groupingSelected = el.currentTarget.id;
 
   console.log("grouping changed", groupingSelected);
-  simulation.alpha(0.35).restart();
+  simulation.alpha(0.7).restart();
   simulation.force("x").initialize(stateData);
   simulation.force("y").initialize(stateData);
 }

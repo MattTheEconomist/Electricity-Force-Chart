@@ -1,35 +1,47 @@
 import { graphDimensions } from "./graphDimensions.js";
 
-const width = graphDimensions.width,
-  height = graphDimensions.height,
-  focalXdistance = graphDimensions.focalXdistance,
-  focalYdistance = graphDimensions.focalYdistance;
-
 export const xPositionCall = {
   groupDefault: defaultX,
   groupRegion: regionGroupingsX,
+  groupPopulation: populationGroupingsX,
+  groupCoal: coalGroupingsX,
+  groupRenewable: renewableGroupingsX,
 };
 
 export const yPositionCall = {
   groupDefault: defaultY,
   groupRegion: regionGroupingsY,
+  groupPopulation: populationGroupingsY,
+  groupCoal: coalGroupingsY,
+  groupRenewable: renewableGroupingsY,
 };
+
+const width = graphDimensions.width,
+  height = graphDimensions.height,
+  focalXdistance = graphDimensions.focalXdistance,
+  focalYdistance = graphDimensions.focalYdistance;
+
+const fourGroupingsXPozRight = width / 2 + focalXdistance;
+const fourGroupingsXPozLeft = width / 2 - focalXdistance;
+const fourGroupingsYPozTop = height / 2 - focalYdistance;
+const fourGroupingsYPozBottom = height / 2 + focalYdistance;
+
+const threeGroupingsXPozLeft = width / 2;
+const threeGroupingsXPozMiddle = width / 2;
+
+const threeGroupingsYPoz = height / 2;
 
 function regionGroupingsX(d) {
   const region = d.region;
   let xPoz;
   if (region === "Northeast" || region === "South") {
     // hardcoded poz for now
-    xPoz = width / 2 - focalXdistance;
+    xPoz = fourGroupingsXPozRight;
   }
   if (region === "West" || region === "Midwest") {
-    xPoz = width / 2 + focalXdistance;
+    xPoz = fourGroupingsXPozLeft;
   }
   return xPoz;
-}
-
-function defaultX(d) {
-  return width / 2;
 }
 
 function regionGroupingsY(d) {
@@ -37,14 +49,87 @@ function regionGroupingsY(d) {
   let yPoz;
   if (region === "Northeast" || region === "Midwest") {
     // hardcoded poz for now
-    yPoz = height / 2 - focalYdistance;
+    yPoz = fourGroupingsYPozTop;
   }
   if (region === "West" || region === "South") {
-    yPoz = height / 2 + focalYdistance;
+    yPoz = fourGroupingsYPozBottom;
   }
   return yPoz;
 }
 
+function defaultX(d) {
+  return width / 2;
+}
+
 function defaultY(d) {
   return graphDimensions.height / 2;
+}
+
+function populationGroupingsX(d) {
+  const populationCategory = d.population_cat;
+  let xPoz;
+  if ([0, 1, 4].includes(populationCategory)) {
+    xPoz = fourGroupingsXPozLeft;
+  }
+  if ([2, 3].includes(populationCategory)) {
+    xPoz = fourGroupingsXPozRight;
+  }
+  return xPoz;
+}
+
+function populationGroupingsY(d) {
+  const populationCategory = d.population_cat;
+  let yPoz;
+
+  if (populationCategory > 2) {
+    yPoz = fourGroupingsYPozTop;
+  }
+  // if (populationCategory < 2) {
+  if ([0, 1, 2].includes(populationCategory)) {
+    yPoz = fourGroupingsYPozBottom;
+  }
+
+  return yPoz;
+}
+
+function coalGroupingsX(d) {
+  const coalCategory = d.coal_pct_cat;
+  let xPoz;
+
+  if (coalCategory === "none") {
+    xPoz = fourGroupingsXPozLeft;
+  }
+  if (coalCategory === "low") {
+    xPoz = threeGroupingsXPozMiddle;
+  }
+  if (coalCategory === "high") {
+    xPoz = fourGroupingsXPozRight;
+  }
+
+  return xPoz;
+}
+
+function coalGroupingsY(d) {
+  return threeGroupingsYPoz;
+}
+
+function renewableGroupingsX(d) {
+  const renewableCategory = d.renewable_share_cat;
+  let xPoz;
+
+  if (renewableCategory === "low") {
+    xPoz = fourGroupingsXPozLeft;
+  }
+  if (renewableCategory === "medium") {
+    xPoz = threeGroupingsXPozMiddle;
+  }
+  if (renewableCategory === "high") {
+    xPoz = fourGroupingsXPozRight;
+  }
+
+  return xPoz;
+}
+
+function renewableGroupingsY(d) {
+  return threeGroupingsYPoz;
 }
