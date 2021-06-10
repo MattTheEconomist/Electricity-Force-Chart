@@ -1,6 +1,8 @@
 import { stateData } from "./data/stateData.js";
 
-import { xPositionCall, yPositionCall } from "./controlPanel.js";
+import { xPositionCall, yPositionCall } from "./controlPanelGroupings.js";
+
+import { textFunctionCall } from "./controlPanelText.js";
 
 import { graphDimensions } from "./graphDimensions.js";
 
@@ -12,6 +14,7 @@ const width = graphDimensions.width,
 let groupingSelected = "groupDefault";
 
 //Initialize a simple force layout, using the nodes and edges in dataset
+
 let simulation = d3
   .forceSimulation(stateData)
   // .forceSimulation(testData)
@@ -84,12 +87,6 @@ function radiusCalc(val) {
   // return val;
 }
 
-stateData.forEach((row) => {
-  if (row.population_cat > 3) {
-    console.log(row);
-  }
-});
-
 const groupingButtons = document.getElementsByClassName("groupingBtn");
 
 Array.from(groupingButtons).forEach((el) => {
@@ -99,7 +96,9 @@ Array.from(groupingButtons).forEach((el) => {
 function changeGrouping(el) {
   groupingSelected = el.currentTarget.id;
 
-  console.log("grouping changed", groupingSelected);
+  textFunctionCall[groupingSelected]();
+
+  // console.log("grouping changed", groupingSelected);
   simulation.alpha(0.7).restart();
   simulation.force("x").initialize(stateData);
   simulation.force("y").initialize(stateData);
