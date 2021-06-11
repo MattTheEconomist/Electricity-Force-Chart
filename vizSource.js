@@ -6,6 +6,11 @@ import { textFunctionCall } from "./controlPanelText.js";
 
 import { graphDimensions } from "./graphDimensions.js";
 
+import {
+  colorsCleanlinessBest,
+  colorsCleanlinessWorst,
+} from "./colorScales.js";
+
 const width = graphDimensions.width,
   height = graphDimensions.height,
   focalXdistance = graphDimensions.focalXdistance,
@@ -61,7 +66,21 @@ const nodes = svg
     return radiusCalc(d.electricityGenerated);
   })
   .style("fill", function (d, i) {
-    return colors(i);
+    const cleanliness = d.electric_cleanliness;
+    let saturation;
+
+    if (cleanliness > 43) {
+      saturation = colorsCleanlinessWorst(cleanliness);
+      return `hsla(0, ${saturation}%, 50%, 1)`;
+    }
+    if (cleanliness < 43) {
+      saturation = colorsCleanlinessBest(cleanliness);
+      return `hsla(110, ${saturation}%, 50%, 1)`;
+    }
+
+    // return colors(d);
+    // return colorsCleanliness(d.electric_cleanliness);
+    // return colorsCleanlinessIndex(i);
   });
 
 //Add a simple tooltip
