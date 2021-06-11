@@ -1,8 +1,5 @@
 import {
   graphDimensions,
-  fourGroupingsYPozTopText,
-  fourGroupingsYPozBottomText,
-  threeGroupingsYPozText,
   fourGroupingsXPozRight,
   fourGroupingsXPozLeft,
   fourGroupingsYPozTop,
@@ -10,9 +7,8 @@ import {
   threeGroupingsXPozMiddle,
   threeGroupingsYPoz,
   width,
-  height,
-  focalXdistance,
-  focalYdistance,
+  threeGroupingsXPozLeft,
+  threeGroupingsXPozRight,
 } from "./graphDimensions.js";
 
 export const xPositionCall = {
@@ -96,13 +92,13 @@ function coalGroupingsX(d) {
   let xPoz;
 
   if (coalCategory === "none") {
-    xPoz = fourGroupingsXPozLeft;
+    xPoz = threeGroupingsXPozLeft;
   }
   if (coalCategory === "low") {
     xPoz = threeGroupingsXPozMiddle;
   }
   if (coalCategory === "high") {
-    xPoz = fourGroupingsXPozRight;
+    xPoz = threeGroupingsXPozRight;
   }
 
   return xPoz;
@@ -117,13 +113,13 @@ function renewableGroupingsX(d) {
   let xPoz;
 
   if (renewableCategory === "low") {
-    xPoz = fourGroupingsXPozLeft;
+    xPoz = threeGroupingsXPozLeft;
   }
   if (renewableCategory === "medium") {
     xPoz = threeGroupingsXPozMiddle;
   }
   if (renewableCategory === "high") {
-    xPoz = fourGroupingsXPozRight;
+    xPoz = threeGroupingsXPozRight;
   }
 
   return xPoz;

@@ -114,7 +114,7 @@ export const stateData = [
     co2_capita: 0.005984846,
     electric_cleanliness: 40.86491557,
     coal_pct_cat: "low",
-    renewable_share_cat: "high",
+    renewable_share_cat: "medium",
   },
   {
     name: "Arkansas",
@@ -153,7 +153,7 @@ export const stateData = [
     co2_capita: 0.010773985,
     electric_cleanliness: 52.35748792,
     coal_pct_cat: "high",
-    renewable_share_cat: "high",
+    renewable_share_cat: "medium",
   },
   {
     name: "California",
@@ -192,7 +192,7 @@ export const stateData = [
     co2_capita: 0.001034465,
     electric_cleanliness: 25.41915423,
     coal_pct_cat: "low",
-    renewable_share_cat: "high",
+    renewable_share_cat: "medium",
   },
   {
     name: "Colorado",
@@ -270,7 +270,7 @@ export const stateData = [
     co2_capita: 0.00266935,
     electric_cleanliness: 27.82748538,
     coal_pct_cat: "low",
-    renewable_share_cat: "medium",
+    renewable_share_cat: "low",
   },
   {
     name: "Delaware",
@@ -309,7 +309,7 @@ export const stateData = [
     co2_capita: 0.003754876,
     electric_cleanliness: 59.02004454,
     coal_pct_cat: "low",
-    renewable_share_cat: "medium",
+    renewable_share_cat: "low",
   },
   {
     name: "Florida",
@@ -348,7 +348,7 @@ export const stateData = [
     co2_capita: 0.004606863,
     electric_cleanliness: 48.88586957,
     coal_pct_cat: "low",
-    renewable_share_cat: "medium",
+    renewable_share_cat: "low",
   },
   {
     name: "Georgia",
@@ -582,7 +582,7 @@ export const stateData = [
     co2_capita: 0.009188069,
     electric_cleanliness: 49.80927835,
     coal_pct_cat: "high",
-    renewable_share_cat: "medium",
+    renewable_share_cat: "high",
   },
   {
     name: "Kansas",
@@ -621,7 +621,7 @@ export const stateData = [
     co2_capita: 0.007168469,
     electric_cleanliness: 39.85496183,
     coal_pct_cat: "high",
-    renewable_share_cat: "medium",
+    renewable_share_cat: "high",
   },
   {
     name: "Kentucky",
@@ -855,7 +855,7 @@ export const stateData = [
     co2_capita: 0.005730732,
     electric_cleanliness: 50.1595092,
     coal_pct_cat: "high",
-    renewable_share_cat: "low",
+    renewable_share_cat: "medium",
   },
   {
     name: "Minnesota",
@@ -894,7 +894,7 @@ export const stateData = [
     co2_capita: 0.004484512,
     electric_cleanliness: 42.43456376,
     coal_pct_cat: "high",
-    renewable_share_cat: "medium",
+    renewable_share_cat: "high",
   },
   {
     name: "Mississippi",
@@ -933,7 +933,7 @@ export const stateData = [
     co2_capita: 0.008406165,
     electric_cleanliness: 48.76803119,
     coal_pct_cat: "low",
-    renewable_share_cat: "medium",
+    renewable_share_cat: "low",
   },
   {
     name: "Missouri",
@@ -1050,7 +1050,7 @@ export const stateData = [
     co2_capita: 0.012231132,
     electric_cleanliness: 62.75862069,
     coal_pct_cat: "high",
-    renewable_share_cat: "medium",
+    renewable_share_cat: "high",
   },
   {
     name: "Nevada",
@@ -1089,7 +1089,7 @@ export const stateData = [
     co2_capita: 0.004519576,
     electric_cleanliness: 42.18484848,
     coal_pct_cat: "low",
-    renewable_share_cat: "medium",
+    renewable_share_cat: "high",
   },
   {
     name: "New Hampshire",
@@ -1128,7 +1128,7 @@ export const stateData = [
     co2_capita: 0.001435599,
     electric_cleanliness: 11.28323699,
     coal_pct_cat: "low",
-    renewable_share_cat: "medium",
+    renewable_share_cat: "high",
   },
   {
     name: "New Jersey",
@@ -1284,7 +1284,7 @@ export const stateData = [
     co2_capita: 0.004516745,
     electric_cleanliness: 38.26494346,
     coal_pct_cat: "low",
-    renewable_share_cat: "low",
+    renewable_share_cat: "medium",
   },
   {
     name: "North Dakota",
@@ -1323,7 +1323,7 @@ export const stateData = [
     co2_capita: 0.037618986,
     electric_cleanliness: 63.99107143,
     coal_pct_cat: "none",
-    renewable_share_cat: "medium",
+    renewable_share_cat: "high",
   },
   {
     name: "Ohio",
@@ -1557,7 +1557,7 @@ export const stateData = [
     co2_capita: 0.004876946,
     electric_cleanliness: 25.59633028,
     coal_pct_cat: "low",
-    renewable_share_cat: "low",
+    renewable_share_cat: "medium",
   },
   {
     name: "SouthDakota",
@@ -1635,7 +1635,7 @@ export const stateData = [
     co2_capita: 0.003999313,
     electric_cleanliness: 34.41813602,
     coal_pct_cat: "high",
-    renewable_share_cat: "low",
+    renewable_share_cat: "medium",
   },
   {
     name: "Texas",
@@ -1791,7 +1791,7 @@ export const stateData = [
     co2_capita: 0.003510624,
     electric_cleanliness: 35.12895662,
     coal_pct_cat: "low",
-    renewable_share_cat: "low",
+    renewable_share_cat: "medium",
   },
   {
     name: "Washington",
@@ -1908,7 +1908,7 @@ export const stateData = [
     co2_capita: 0.006041975,
     electric_cleanliness: 55.75118859,
     coal_pct_cat: "high",
-    renewable_share_cat: "high",
+    renewable_share_cat: "medium",
   },
   {
     name: "Wyoming",
