@@ -6,6 +6,13 @@ import { textFunctionCall } from "./controlPanelText.js";
 
 import { graphDimensions } from "./graphDimensions.js";
 
+// import { sankey } from "./node_modules/d3-sankey/src/sankey.js";
+// import { sankey } from "./node_modules/d3-sankey/src/sankey.js";
+
+let sank = d3.sankey();
+
+console.log(sank);
+
 import {
   colorsCleanlinessBest,
   colorsCleanlinessWorst,
@@ -77,10 +84,6 @@ const nodes = svg
       saturation = colorsCleanlinessBest(cleanliness);
       return `hsla(110, ${saturation}%, 50%, 1)`;
     }
-
-    // return colors(d);
-    // return colorsCleanliness(d.electric_cleanliness);
-    // return colorsCleanlinessIndex(i);
   });
 
 //Add a simple tooltip
