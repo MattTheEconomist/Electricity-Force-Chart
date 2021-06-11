@@ -1,4 +1,19 @@
-import { graphDimensions } from "./graphDimensions.js";
+import {
+  graphDimensions,
+  fourGroupingsYPozTopText,
+  fourGroupingsYPozBottomText,
+  threeGroupingsYPozText,
+  fourGroupingsXPozRight,
+  fourGroupingsXPozLeft,
+  fourGroupingsYPozTop,
+  fourGroupingsYPozBottom,
+  threeGroupingsXPozMiddle,
+  threeGroupingsYPoz,
+  width,
+  height,
+  focalXdistance,
+  focalYdistance,
+} from "./graphDimensions.js";
 
 export const xPositionCall = {
   groupDefault: defaultX,
@@ -16,26 +31,10 @@ export const yPositionCall = {
   groupRenewable: renewableGroupingsY,
 };
 
-const width = graphDimensions.width,
-  height = graphDimensions.height,
-  focalXdistance = graphDimensions.focalXdistance,
-  focalYdistance = graphDimensions.focalYdistance;
-
-const fourGroupingsXPozRight = width / 2 + focalXdistance;
-const fourGroupingsXPozLeft = width / 2 - focalXdistance;
-const fourGroupingsYPozTop = height / 2 - focalYdistance;
-const fourGroupingsYPozBottom = height / 2 + focalYdistance;
-
-const threeGroupingsXPozLeft = width / 2;
-const threeGroupingsXPozMiddle = width / 2;
-
-const threeGroupingsYPoz = height / 2;
-
 function regionGroupingsX(d) {
   const region = d.region;
   let xPoz;
   if (region === "Northeast" || region === "South") {
-    // hardcoded poz for now
     xPoz = fourGroupingsXPozRight;
   }
   if (region === "West" || region === "Midwest") {
