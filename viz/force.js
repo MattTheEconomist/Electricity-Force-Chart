@@ -1,22 +1,15 @@
-import { stateData } from "./data/stateData.js";
+import { stateData } from "../data/stateData.js";
 
-import { xPositionCall, yPositionCall } from "./controlPanelGroupings.js";
+import { xPositionCall, yPositionCall } from "../controlPanelGroupings.js";
 
-import { textFunctionCall } from "./controlPanelText.js";
+import { textFunctionCall } from "../controlPanelText.js";
 
-import { graphDimensions } from "./graphDimensions.js";
-
-// import { sankey } from "./node_modules/d3-sankey/src/sankey.js";
-// import { sankey } from "./node_modules/d3-sankey/src/sankey.js";
-
-let sank = d3.sankey();
-
-console.log(sank);
+import { graphDimensions } from "../graphDimensions/graphDimensionsForce.js";
 
 import {
   colorsCleanlinessBest,
   colorsCleanlinessWorst,
-} from "./colorScales.js";
+} from "../colorScales.js";
 
 const width = graphDimensions.width,
   height = graphDimensions.height,

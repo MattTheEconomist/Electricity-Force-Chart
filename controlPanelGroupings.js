@@ -9,7 +9,7 @@ import {
   width,
   threeGroupingsXPozLeft,
   threeGroupingsXPozRight,
-} from "./graphDimensions.js";
+} from "./graphDimensions/graphDimensionsForce.js";
 
 export const xPositionCall = {
   groupDefault: defaultX,

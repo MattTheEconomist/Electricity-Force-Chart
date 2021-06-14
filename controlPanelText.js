@@ -7,7 +7,7 @@ import {
   threeGroupingsXPozMiddleText,
   threeGroupingsXPozLeftText,
   threeGroupingsXPozRightText,
-} from "./graphDimensions.js";
+} from "./graphDimensions/graphDimensionsForce.js";
 
 export const textFunctionCall = {
   groupDefault: defaultText,

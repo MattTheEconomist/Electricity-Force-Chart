@@ -1,6 +1,6 @@
 export const graphDimensions = {
   width: 800,
-  height: 450,
+  height: 350,
   focalXdistance: 200,
   focalYdistance: 100,
 };
@@ -35,10 +35,6 @@ const fourGroupingsYPozBottomText = fourGroupingsYPozBottom - textMarginBottom;
 const fourGroupingsYPozTopText = fourGroupingsYPozTop - textMarginBottom;
 const fourGroupingsXPozLeftText = fourGroupingsXPozLeft - textMargnRight;
 const fourGroupingsXPozRightText = fourGroupingsXPozRight - textMargnRight;
-
-// const threeGroupingsXPozMiddleText
-// const threeGroupingsXPozMiddleText
-// const threeGroupingsXPozMiddleText
 
 export {
   fourGroupingsYPozTopText,
