@@ -3,10 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <title>Force Chart</title>
-    <script type="text/javascript" src="d3.js"></script>
 
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
+
+    <script src="./viz/sankeyHybrid.js" type="module"></script>
     <script src="./viz/force.js" type="module"></script>
-    <script src="./viz/sankey.js" type="module"></script>
     <script src="./data/stateData.js" type="module"></script>
     <script src="./controlPanelGroupings.js" type="module"></script>
     <script src="./controlPanelText.js" type="module"></script>
@@ -20,45 +23,43 @@
     ></script>
     <script src="./colorScales.js" type="module"></script>
 
-    <script src="https://unpkg.com/d3-array@1"></script>
-    <script src="https://unpkg.com/d3-collection@1"></script>
-    <script src="https://unpkg.com/d3-path@1"></script>
-    <script src="https://unpkg.com/d3-shape@1"></script>
-    <script src="https://unpkg.com/d3-sankey@0"></script>
 
-    <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <div id="forceViz"></div>
 
-    <div id="controlPanel">
-      <span>Change Grouping</span>
-      <table>
-        <tr>
-          <td>
-            <button class="groupingBtn" id="groupRegion">Region</button>
-          </td>
-          <td>
-            <button class="groupingBtn" id="groupPopulation">Population</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button class="groupingBtn" id="groupRenewable">
-              Renewables Percent
-            </button>
-          </td>
-          <td>
-            <button class="groupingBtn" id="groupCoal">Coal Percent</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button class="groupingBtn" id="groupDefault">Default</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div id="cornerSankey"></div>
-  </body>
+  <div id="forceViz"></div>
+
+  <div id="controlPanel">
+    <span>Change Grouping</span>
+    <table>
+      <tr>
+        <td>
+          <button class="groupingBtn" id="groupRegion">Region</button>
+        </td>
+        <td>
+          <button class="groupingBtn" id="groupPopulation">Population</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button class="groupingBtn" id="groupRenewable">
+            Renewables Percent
+          </button>
+        </td>
+        <td>
+          <button class="groupingBtn" id="groupCoal">Coal Percent</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button class="groupingBtn" id="groupDefault">Default</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id="cornerSankey"></div>
+
+  
+<div id="my_dataviz"></div>
+
+</body>
 </html>
