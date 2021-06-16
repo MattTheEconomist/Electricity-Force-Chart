@@ -1,0 +1,32 @@
+{
+    "nodes": [
+      { "node": 1, "name": "gen_naturalGas_pct" },
+      { "node": 2, "name": "gen_coal_pct" },
+      { "node": 3, "name": "gen_nuclear_pct" },
+      { "node": 4, "name": "gen_hydroelectric_pct" },
+      {
+        "node": 5,
+        "name": "gen_nonhydroRenewables_pct"
+      },
+      { "node": 6, "name": "totalElectricity" },
+      { "node": 7, "name": "cons_rejected_pct" },
+      { "node": 8, "name": "cons_residential_pct" },
+      { "node": 9, "name": "cons_commercial_pct" },
+      { "node": 10, "name": "cons_industrial_pct" }
+    ],
+    "links": [
+      { "source": 1, "target": 6, "value": 0.5004 },
+      { "source": 2, "target": 6, "value": 0.1959 },
+      { "source": 3, "target": 6, "value": 0.0953 },
+      { "source": 4, "target": 6, "value":  0.0041},
+      {
+        "source": 5,
+        "target": 6,
+        "value":  0.2029
+      },
+      { "source": 6, "target": 7, "value": 0.6431 },
+      { "source": 6, "target": 8, "value":  0.1323 },
+      { "source": 6, "target": 9, "value":  0.1207},
+      { "source": 6, "target": 10, "value": 0.104 }
+    ]
+  }
