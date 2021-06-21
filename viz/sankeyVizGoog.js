@@ -1,31 +1,63 @@
 import { stateData } from "../data/stateData.js";
 
 google.charts.load("current", { packages: ["sankey"] });
+
 google.charts.setOnLoadCallback(drawChart);
 
-function drawChart() {
+// google.visualization.events.addListener(drawChart, )
+
+// document.querySelector("#dropdownContainer").innerHTML(`<h3>hello</h3>`);
+
+const allStateNames = stateData.map((row) => row.name);
+
+let dropdownContainer = document.getElementById("dropdownContainer");
+
+let dropdownInnerHtml = "";
+for (let i = 0; i < allStateNames.length; i++) {
+  const currentName = allStateNames[i];
+
+  dropdownInnerHtml += `<option value="${currentName}" >${currentName}</option>`;
+}
+
+dropdownContainer.innerHTML = `<select id="stateNameDropdown">
+${dropdownInnerHtml}
+</select>`;
+
+const stateSelector = document.getElementById("stateNameDropdown");
+
+let currentStateSelected = "Alabama";
+let currentAbbrevSelected = "AL";
+
+stateSelector.addEventListener("change", () => {
+  currentStateSelected = stateSelector.value;
+
+  currentAbbrevSelected = stateData.filter(
+    (row) => row.name === currentStateSelected.State
+  );
+
+  drawChart(currentAbbrevSelected);
+});
+
+console.log(stateSelector);
+
+// console.log(dropdownContainer);
+// console.log(dropdownInnerHtml);
+
+function drawChart(State) {
+  // function drawChart(thisInput) {
   var data = new google.visualization.DataTable();
   data.addColumn("string", "From");
   data.addColumn("string", "To");
   data.addColumn("number", "Weight");
-  // data.addRows([
-  //   ["Natural Gas", "Total Electricity", 0.5004],
-  //   ["Coal", "Total Electricity", 0.1959],
-  //   ["Nuclear", "Total Electricity", 0.0953],
-  //   ["HydroElectric", "Total Electricity", 0.0041],
-  //   ["NonHydro Renewables", "Total Electricity", 0.2029],
-  //   ["Total Electricity", "Rejected", 0.6431],
-  //   ["Total Electricity", "Residential", 0.1323],
-  //   ["Total Electricity", "Commercial ", 0.1207],
-  //   ["Total Electricity", "Industrial ", 0.104],
-  // ]);
 
-  data.addRows(sankeyPreprocessing("WV"));
-  console.log(sankeyPreprocessing("WV"));
+  // find a better way to connect dropdown to chart
+  data.addRows(sankeyPreprocessing("TX"));
+  console.log(sankeyPreprocessing("TX"));
 
   // Sets chart options.
   var options = {
     width: 600,
+
     sankey: {
       node: {
         label: {
@@ -38,7 +70,7 @@ function drawChart() {
         colors: [
           "#a6cee3", // Custom color palette for sankey nodes.
           "#1f78b4", // Nodes will cycle through this palette
-          "#b2df8a", // giving each node its own color.
+          "#b2df8a",
           "#33a02c",
         ],
         width: 50,
@@ -78,7 +110,7 @@ function sankeyPreprocessing(State) {
   importQuantity = Math.abs(importQuantity);
 
   let dataRows_gen = gen_keys
-    .filter((key) => singleState[key] > 0)
+    .filter((key) => singleState[key] !== 0)
     .map((key) => {
       return [key, "Total Electricity", singleState[key]];
     });
