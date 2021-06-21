@@ -1,4 +1,4 @@
 export const sankeyDimensions = {
   width: 800,
-  height: 400,
+  height: 600,
 };

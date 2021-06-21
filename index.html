@@ -6,9 +6,19 @@
 
     <link rel="stylesheet" href="style.css" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
+    <!-- <script src="./sankey.js" type="module"></script> -->
 
-    <script src="./viz/sankeyHybrid.js" type="module"></script>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+
+    <script src="./viz/sankeyVizGoog.js" type="module"></script>
+
+    <!-- <script src="./viz/sankeyFromScratch.js" type="module"></script> -->
+    <!-- <script src="./viz/sankeyViz.js" type="module"></script> -->
     <script src="./viz/force.js" type="module"></script>
     <script src="./data/stateData.js" type="module"></script>
     <script src="./data/sankeyDataPreprocessing.js" type="module"></script>
@@ -23,13 +33,13 @@
       type="module"
     ></script>
     <script src="./colorScales.js" type="module"></script>
-
-
   </head>
+  <body>
+    <!-- <div id="selectMe"></div> -->
+    <!-- <div id="sankey_basic" style="width: 900px; height: 300px"></div> -->
+    <!-- <div id="forceViz"></div> -->
 
-  <!-- <div id="forceViz"></div> -->
-
-  <div id="controlPanel">
+    <!-- <div id="controlPanel">
     <span>Change Grouping</span>
     <table>
       <tr>
@@ -56,9 +66,9 @@
         </td>
       </tr>
     </table>
-  </div>
-  <div id="cornerSankey"></div>
+  </div> -->
+    <div id="cornerSankey"></div>
 
-  
-</body>
+    <!-- <h3 class="header" id="headerId">hello</h3> -->
+  </body>
 </html>
