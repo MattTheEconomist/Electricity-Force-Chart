@@ -1,17 +1,23 @@
 import { stateData } from "../data/stateData.js";
 
-const svg = d3.select("#totalPowerContainer").append("svg");
-
+const graphMargin = { top: 20, right: 20, bottom: 70, left: 40 };
 const graphDimensions_rankings = {
-  height: 150,
-  width: 500,
+  //   height: 150,
+  height: 200 - graphMargin.top - graphMargin.bottom,
+  width: 550 - graphMargin.right - graphMargin.left,
   barWidth: 7,
   barToBar: 8,
 };
 
-function graphRankings(column) {
-  let yData = stateData.map((row) => row[column]);
-  yData = yData.sort((a, b) => a - b);
+// svg.
+
+export function graphRankings(column, State, svgSelector) {
+  const stateDataSorted = stateData.sort((a, b) =>
+    a[column] > b[column] ? 1 : -1
+  );
+  const yData = stateDataSorted.map((row) => row[column]);
+
+  console.log(yData);
 
   const height = graphDimensions_rankings.height;
   const width = graphDimensions_rankings.width;
@@ -19,30 +25,25 @@ function graphRankings(column) {
   const yScale = d3
     .scaleLinear()
     .domain([0, d3.max(yData)])
-    // .range([height, 0]);
     .range([0, height]);
 
-  //   console.log(yScale(100), yScale(200));
   console.log(height - yScale(100), height - yScale(200));
 
-  console.log(yData);
-
-  svg
+  svgSelector
     .selectAll("bar")
-    .data(yData)
+    .data(stateDataSorted)
     .enter()
     .append("rect")
-    .attr("x", (d, i) => i * 6)
-    // .attr("y", (d) => d / 100)
-    // .attr("y", (d) => yScale(d))
-    // .attr("y", (d) => yScale(d) + height)
+    .attr("x", (d, i) => i * graphDimensions_rankings.barToBar)
+    .attr("fill", (d) => {
+      if (d.State === State) {
+        return "red";
+      } else {
+        return "blue";
+      }
+    })
+    .attr("y", (d, i) => height - yScale(yData[i]) + graphMargin.top)
 
-    .attr("y", (d) => height - yScale(d))
     .attr("width", 6)
-    .attr("height", (d) => yScale(d));
-  // .attr("height", (d) => height - yScale(d));
-  // .attr("height", (d) => yScale(d) - height);
-  // .attr("height", (d) => (yScale(d) - height) * -1);
+    .attr("height", (d, i) => yScale(yData[i]) + 20);
 }
-
-graphRankings("totalConsumed");

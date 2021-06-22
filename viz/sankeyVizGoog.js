@@ -1,66 +1,60 @@
-import { stateData } from "../data/stateData.js";
-import { sankeyPreProcessing } from "../data/sankeyDataPreProcessing.js";
-import { sankeyGraphOptions } from "../graphDimensions/graphDimensionsSankey.js";
+// import { stateData } from "../data/stateData.js";
+// import { sankeyPreProcessing } from "../data/sankeyDataPreProcessing.js";
+// import { sankeyGraphOptions } from "../graphDimensions/graphDimensionsSankey.js";
 
-google.charts.load("current", { packages: ["sankey"] });
+// // import { drawChartSankey } from "../viz/sankeyVizGoog.js";
 
-google.charts.setOnLoadCallback(drawChartSankey);
+// google.charts.load("current", { packages: ["sankey"] });
 
-const allStateNames = stateData.map((row) => row.name);
+// google.charts.setOnLoadCallback(drawChartSankey);
 
-let dropdownContainer = document.getElementById("dropdownContainer");
+// const allStateNames = stateData.map((row) => row.name);
 
-let dropdownInnerHtml = "";
+// let dropdownContainer = document.getElementById("dropdownContainer");
 
-dropdownInnerHtml = allStateNames.map(
-  (currentName) => `<option value="${currentName}" >${currentName}</option>`
-);
+// let dropdownInnerHtml = "";
 
-dropdownContainer.innerHTML = `<select id="stateNameDropdown">
-${dropdownInnerHtml}
-</select>`;
+// dropdownInnerHtml = allStateNames.map(
+//   (currentName) => `<option value="${currentName}" >${currentName}</option>`
+// );
 
-const stateSelector = document.getElementById("stateNameDropdown");
+// dropdownContainer.innerHTML = `<select id="stateNameDropdown">
+// ${dropdownInnerHtml}
+// </select>`;
 
-let currentStateSelected = "Alabama";
-let currentAbbrevSelected = "AL";
+// const stateSelector = document.getElementById("stateNameDropdown");
 
-stateSelector.addEventListener("change", () => {
-  currentStateSelected = stateSelector.value;
+// let currentStateSelected = "Alabama";
+// let currentAbbrevSelected = "AL";
 
-  currentAbbrevSelected = stateData.filter(
-    (row) => row.name === currentStateSelected
-  )[0].State;
+// stateSelector.addEventListener("change", () => {
+//   currentStateSelected = stateSelector.value;
 
-  var chart = new google.visualization.Sankey(
-    document.getElementById("cornerSankey")
-  );
+//   currentAbbrevSelected = stateData.filter(
+//     (row) => row.name === currentStateSelected
+//   )[0].State;
 
-  let sankeyData = new google.visualization.DataTable();
-  sankeyData.addColumn("string", "From");
-  sankeyData.addColumn("string", "To");
-  sankeyData.addColumn("number", "Weight");
+//   const chart = new google.visualization.Sankey(
+//     document.getElementById("cornerSankey")
+//   );
 
-  sankeyData.addRows(sankeyPreProcessing(currentAbbrevSelected));
+//   drawChartSankey(currentAbbrevSelected);
 
-  // Sets chart options.
+//   console.log(currentAbbrevSelected);
+// });
 
-  chart.draw(sankeyData, sankeyGraphOptions);
+// export function drawChartSankey(State) {
+//   var data = new google.visualization.DataTable();
+//   data.addColumn("string", "From");
+//   data.addColumn("string", "To");
+//   data.addColumn("number", "Weight");
 
-  // console.log(currentAbbrevSelected);
-  // d3.selectAll("rect").attr("fill", "black");
-});
+//   console.log(currentAbbrevSelected);
 
-export function drawChartSankey(State) {
-  var data = new google.visualization.DataTable();
-  data.addColumn("string", "From");
-  data.addColumn("string", "To");
-  data.addColumn("number", "Weight");
+//   data.addRows(sankeyPreProcessing(currentAbbrevSelected));
 
-  data.addRows(sankeyPreProcessing(currentAbbrevSelected));
-
-  var chart = new google.visualization.Sankey(
-    document.getElementById("cornerSankey")
-  );
-  chart.draw(data, sankeyGraphOptions);
-}
+//   var chart = new google.visualization.Sankey(
+//     document.getElementById("cornerSankey")
+//   );
+//   chart.draw(data, sankeyGraphOptions);
+// }
