@@ -17,17 +17,19 @@ export function graphRankings(column, State, svgSelector) {
   );
   const yData = stateDataSorted.map((row) => row[column]);
 
-  console.log(yData);
+  // console.log(yData);
 
   const height = graphDimensions_rankings.height;
   const width = graphDimensions_rankings.width;
+
+  const barClassName = `bar_${column}`;
+
+  d3.selectAll(`.${barClassName}`).remove();
 
   const yScale = d3
     .scaleLinear()
     .domain([0, d3.max(yData)])
     .range([0, height]);
-
-  console.log(height - yScale(100), height - yScale(200));
 
   svgSelector
     .selectAll("bar")
@@ -43,7 +45,68 @@ export function graphRankings(column, State, svgSelector) {
       }
     })
     .attr("y", (d, i) => height - yScale(yData[i]) + graphMargin.top)
-
     .attr("width", 6)
-    .attr("height", (d, i) => yScale(yData[i]) + 20);
+    .attr("height", (d, i) => yScale(yData[i]) + 20)
+    .classed(barClassName, true);
+
+  arrowAxis(svgSelector, column);
+}
+
+function arrowAxis(svgSelector, column) {
+  const arrowClassName = `line_${column}`;
+
+  d3.selectAll(`.${arrowClassName}`).remove();
+
+  const startingX = 100;
+  const endingX = 300;
+  const endingY = 200;
+  const arrowCurve = 15;
+  const textMargin = 15;
+
+  svgSelector
+    .append("line")
+    .style("stroke", "black")
+    .style("stroke-width", 1)
+    .attr("x1", startingX)
+    .attr("y1", endingY)
+    .attr("x2", endingX)
+    .attr("y2", endingY)
+    .classed(`${arrowClassName}`, true);
+
+  svgSelector
+    .append("line")
+    .style("stroke", "black")
+    .style("stroke-width", 1)
+    .attr("x1", endingX - arrowCurve)
+    .attr("y1", endingY - arrowCurve)
+    .attr("x2", endingX)
+    .attr("y2", endingY)
+    .classed(`${arrowClassName}`, true);
+
+  svgSelector
+    .append("line")
+    .style("stroke", "black")
+    .style("stroke-width", 1)
+    .attr("x1", endingX - arrowCurve)
+    .attr("y1", endingY + arrowCurve)
+    .attr("x2", endingX)
+    .attr("y2", endingY)
+    .classed(arrowClassName, true);
+
+  svgSelector
+    .append("text")
+    .text(() => {
+      let axisText;
+
+      if (column === "electric_cleanliness") {
+        axisText = "Dirtier Electricity";
+      }
+
+      if (column === "totalConsumed") {
+        axisText = "More Electricity ";
+      }
+      return axisText;
+    })
+    .attr("dx", startingX)
+    .attr("dy", endingY + textMargin);
 }

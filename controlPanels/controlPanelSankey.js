@@ -14,11 +14,15 @@ powerSvg
   .attr("width", 400)
   .style("background-color", "grey");
 
+const cleanSvg = d3.select("#cleanlinessContainer").append("svg");
+cleanSvg
+  .attr("height", 300)
+  .attr("width", 400)
+  .style("background-color", "grey");
+
 google.charts.load("current", { packages: ["sankey"] });
 
 google.charts.setOnLoadCallback(drawChartSankey);
-
-// graphRankings("totalConsumed", "AL", powerSvg);
 
 const allStateNames = stateData.map((row) => row.name);
 
@@ -50,10 +54,8 @@ stateSelector.addEventListener("change", () => {
 
   drawChartSankey(currentAbbrevSelected);
 
-  //   graphRankings("totalConsumed", currentAbbrevSelected, powerSvg);
   graphRankings("totalConsumed", currentAbbrevSelected, powerSvg);
-
-  console.log(currentAbbrevSelected);
+  graphRankings("electric_cleanliness", currentAbbrevSelected, cleanSvg);
 });
 
 function drawChartSankey(State) {
@@ -61,8 +63,6 @@ function drawChartSankey(State) {
   data.addColumn("string", "From");
   data.addColumn("string", "To");
   data.addColumn("number", "Weight");
-
-  //   console.log(currentAbbrevSelected);
 
   data.addRows(sankeyPreProcessing(currentAbbrevSelected));
 
