@@ -69,5 +69,5 @@ function drawChartSankey(State) {
   var chart = new google.visualization.Sankey(
     document.getElementById("cornerSankey")
   );
-  chart.draw(data, sankeyGraphOptions);
+  chart.draw(data, sankeyGraphOptions(currentAbbrevSelected));
 }

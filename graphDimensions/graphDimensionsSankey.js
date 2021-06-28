@@ -5,53 +5,56 @@ export const sankeyDimensions = {
   height: 600,
 };
 
-const nodeColors = {
+const nodeColorLookup = {
   Coal: "black",
   Nuclear: "pink",
   NaturalGas: "blue",
   HydroElectric: "teal",
   NonHydroRenewables: "green",
   Petroleum: "red",
-  ElectricityImports: "white",
-  RejectedEnergy: "white",
+  ElectricityImports: "brown",
+  RejectedEnergy: "grey",
   ElectricityExports: "brown",
   Residential: "brown",
   Industrial: "brown",
   Commercial: "brown",
-  // totalElectricity: "dodgerblue",
 };
 
-export const sankeyGraphOptions = {
-  width: 800,
-  height: 300,
-  tooltip: { isHtml: true },
-  sankey: {
-    node: {
-      label: {
-        // fontName: "Times-Roman",
-        fontSize: 12,
-        // color: "#000",
-        // bold: true,
-        // italic: false,
+export function sankeyGraphOptions(currentAbbrevSelected) {
+  const sankeyOptions = {
+    width: 800,
+    height: 300,
+    tooltip: { isHtml: true },
+    sankey: {
+      node: {
+        label: {
+          // fontName: "Times-Roman",
+          fontSize: 12,
+          // color: "#000",
+          // bold: true,
+          // italic: false,
+        },
+        // colors: ["#05b4ff"],
+        colors: colorNodes(currentAbbrevSelected),
+        width: 20,
+        interactivity: false,
       },
-      // colors: ["#05b4ff"],
-      colors: colorNodes(),
-      width: 20,
-      interactivity: false,
-    },
-    link: {
-      color: {
-        fill: "rgba(128, 128, 128, 1)",
-        fillOpacity: 0.8,
+      link: {
+        color: {
+          fill: "rgba(128, 128, 128, 1)",
+          fillOpacity: 0.8,
+        },
       },
     },
-  },
-};
+  };
 
-function colorNodes() {
-  // google sankey works by displaying widest nodes on top. This function
-  // sorts nodes and assigns color by node id
-  const nodeData = sankeyPreProcessing("AZ");
+  return sankeyOptions;
+}
+
+function colorNodes(currentAbbrevSelected) {
+  //this function returns node colors by node name, each electricity source has its own color
+  // each electricity consumption type has its own color
+  const nodeData = sankeyPreProcessing(currentAbbrevSelected);
 
   let generationNodes = nodeData.filter(
     (row) => row[1] === "Total Electricity"
@@ -59,14 +62,6 @@ function colorNodes() {
   let consumptionNodes = nodeData.filter(
     (row) => row[0] === "Total Electricity"
   );
-
-  generationNodes = generationNodes.sort((a, b) => {
-    return b[2] - a[2];
-  });
-
-  consumptionNodes = consumptionNodes.sort((a, b) => {
-    return b[2] - a[2];
-  });
 
   let generationNodeNames = generationNodes
     .map((node) => node[0])
@@ -78,37 +73,14 @@ function colorNodes() {
 
   const allNodeNames = generationNodeNames.concat(consumptionNodeNames);
 
-  let nodeColorList = allNodeNames.map((name) => nodeColors[name]);
+  let nodeColorList = allNodeNames.map((name) => nodeColorLookup[name]);
 
-  // console.log("allNodeName", allNodeNames);
-
-  // console.log("nodeColorList", nodeColorList);
-
-  let newNodeColorList = [
+  //final color list must include color for "total electricity" node, always in index position 1
+  let nodeColorList_final = [
     ...nodeColorList.slice(0, 1),
     "yellow",
     ...nodeColorList.slice(1),
   ];
 
-  newNodeColorList = [
-    "pink",
-    "yellow",
-    "blue",
-    "black",
-    "teal",
-    "green",
-    "red",
-    "brown",
-    "brown",
-    "brown",
-    "brown",
-    "brown",
-    "brown",
-  ];
-
-  console.log(newNodeColorList);
-
-  return newNodeColorList;
+  return nodeColorList_final;
 }
-
-colorNodes();
