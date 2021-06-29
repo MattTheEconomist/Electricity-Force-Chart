@@ -6,18 +6,18 @@ export const sankeyDimensions = {
 };
 
 const nodeColorLookup = {
-  Coal: "black",
-  Nuclear: "pink",
-  NaturalGas: "blue",
-  HydroElectric: "teal",
-  NonHydroRenewables: "green",
+  Coal: "red",
+  Nuclear: "#1B8EF2",
+  NaturalGas: "#1CCFFC",
+  HydroElectric: "#24E6D9",
+  NonHydroRenewables: "#1CFCAE",
   Petroleum: "red",
-  ElectricityImports: "brown",
-  RejectedEnergy: "grey",
-  ElectricityExports: "brown",
-  Residential: "brown",
-  Industrial: "brown",
-  Commercial: "brown",
+  ElectricityImports: "#12FCED",
+  RejectedEnergy: "#4D0FFC",
+  ElectricityExports: "#7629F2",
+  Residential: "#93f",
+  Industrial: "#a3f",
+  Commercial: "#c533ff",
 };
 
 export function sankeyGraphOptions(currentAbbrevSelected) {
@@ -28,22 +28,16 @@ export function sankeyGraphOptions(currentAbbrevSelected) {
     sankey: {
       node: {
         label: {
-          // fontName: "Times-Roman",
-          fontSize: 12,
-          // color: "#000",
-          // bold: true,
-          // italic: false,
+          fontName: "calibri",
+          fontSize: 14,
         },
-        // colors: ["#05b4ff"],
         colors: colorNodes(currentAbbrevSelected),
         width: 20,
         interactivity: false,
       },
       link: {
-        color: {
-          fill: "rgba(128, 128, 128, 1)",
-          fillOpacity: 0.8,
-        },
+        colorMode: "gradient",
+        colors: colorNodes(currentAbbrevSelected),
       },
     },
   };
@@ -78,9 +72,11 @@ function colorNodes(currentAbbrevSelected) {
   //final color list must include color for "total electricity" node, always in index position 1
   let nodeColorList_final = [
     ...nodeColorList.slice(0, 1),
-    "yellow",
+    "#535346",
     ...nodeColorList.slice(1),
   ];
+
+  // console.log(nodeColorList_final);
 
   return nodeColorList_final;
 }

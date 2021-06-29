@@ -2,23 +2,18 @@ import { stateData } from "../data/stateData.js";
 import { sankeyPreProcessing } from "../data/sankeyDataPreProcessing.js";
 import { sankeyGraphOptions } from "../graphDimensions/graphDimensionsSankey.js";
 import { graphRankings } from "../viz/rankingsGraphs.js";
-
-// import { drawChartSankey } from "../viz/sankeyVizGoog.js";
+import { powerRankingsText, cleanRankingsText } from "./rankingsGraphText.js";
 
 const sankeyContainer = document.getElementById("cornerSankey");
 const powerContainer = document.getElementById("totalPowerContainer");
 
 const powerSvg = d3.select("#totalPowerContainer").append("svg");
-powerSvg
-  .attr("height", 300)
-  .attr("width", 400)
-  .style("background-color", "grey");
+powerSvg.attr("height", 300).attr("width", 400);
+// .style("background-color", "grey");
 
 const cleanSvg = d3.select("#cleanlinessContainer").append("svg");
-cleanSvg
-  .attr("height", 300)
-  .attr("width", 400)
-  .style("background-color", "grey");
+cleanSvg.attr("height", 300).attr("width", 400);
+// .style("background-color", "grey");
 
 google.charts.load("current", { packages: ["sankey"] });
 

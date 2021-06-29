@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script> -->
     <!-- <script src="./sankey.js" type="module"></script> -->
 
     <script
@@ -15,17 +15,20 @@
       src="https://www.gstatic.com/charts/loader.js"
     ></script>
 
-    <script src="./viz/sankeyVizGoog.js" type="module"></script>
-
-    <!-- <script src="./viz/sankeyFromScratch.js" type="module"></script> -->
-    <!-- <script src="./viz/sankeyViz.js" type="module"></script> -->
     <script src="./viz/force.js" type="module"></script>
-    <script src="./data/stateData.js" type="module"></script>
-    <script src="./data/sankeyDataPreProcessing.js" type="module"></script>
+    <script src="./viz/sankeyLabels.js" type="module"></script>
+    <script src="./viz/rankingsGraphs.js" type="module"></script>
+
     <script src="./controlPanelGroupings.js" type="module"></script>
     <script src="./controlPanelText.js" type="module"></script>
     <script src="./controlPanels/controlPanelSankey.js" type="module"></script>
-    <script src="./viz/rankingsGraphs.js" type="module"></script>
+    <script src="./controlPanels/rankingsGraphText.js" type="module"></script>
+
+    <script src="./colorScales.js" type="module"></script>
+
+    <script src="./data/stateData.js" type="module"></script>
+    <script src="./data/sankeyDataPreProcessing.js" type="module"></script>
+
     <script
       src="./graphDimensions/graphDimensionsForce.js"
       type="module"
@@ -34,7 +37,6 @@
       src="./graphDimensions/graphDimensionsSankey.js"
       type="module"
     ></script>
-    <script src="./colorScales.js" type="module"></script>
   </head>
   <body>
     <!-- <div id="selectMe"></div> -->
@@ -70,11 +72,19 @@
     </table>
   </div> -->
 
-    <div id="cornerSankey"></div>
+    <div id="dropdownArea">
+      <h3 id="dropdownLabel">Change your State Selected</h3>
+      <div id="dropdownContainer"></div>
+    </div>
+
+    <div id="fullSankeyContainer">
+      <div id="sankeyLabels"></div>
+
+      <div id="cornerSankey"></div>
+    </div>
 
     <br />
     <br />
-    <div id="dropdownContainer"></div>
 
     <div id="rankingGraphsArea">
       <div id="totalPowerContainer"></div>

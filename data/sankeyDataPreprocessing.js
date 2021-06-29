@@ -49,7 +49,7 @@ export function sankeyPreProcessing(State) {
 
   const dataRows = dataRows_gen.concat(dataRows_cons);
 
-  console.log(dataRows);
+  // console.log(dataRows);
 
   return dataRows;
 }
