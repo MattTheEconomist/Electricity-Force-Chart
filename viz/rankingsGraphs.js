@@ -39,7 +39,7 @@ export function graphRankings(column, State, svgSelector) {
     .attr("x", (d, i) => i * graphDimensions_rankings.barToBar)
     .attr("fill", (d) => {
       if (d.State === State) {
-        return "red";
+        return "#48E0EB";
       } else {
         return "blue";
       }
@@ -55,23 +55,32 @@ export function graphRankings(column, State, svgSelector) {
 function arrowAxis(svgSelector, column) {
   const arrowClassName = `line_${column}`;
 
+  let endingXBuffer;
+
+  if (column === "totalConsumed") {
+    endingXBuffer = 125;
+  }
+  if (column === "electric_cleanliness") {
+    endingXBuffer = 135;
+  }
+
   d3.selectAll(`.${arrowClassName}`).remove();
 
   const startingX = 100;
-  const endingX = 300;
-  const endingY = 200;
+  const endingX = startingX + endingXBuffer;
+  const endingY = 175;
   const arrowCurve = 15;
-  const textMargin = 15;
+  const textMargin = 5;
 
-  svgSelector
-    .append("line")
-    .style("stroke", "black")
-    .style("stroke-width", 1)
-    .attr("x1", startingX)
-    .attr("y1", endingY)
-    .attr("x2", endingX)
-    .attr("y2", endingY)
-    .classed(`${arrowClassName}`, true);
+  // svgSelector
+  //   .append("line")
+  //   .style("stroke", "black")
+  //   .style("stroke-width", 1)
+  //   .attr("x1", startingX)
+  //   .attr("y1", endingY)
+  //   .attr("x2", endingX)
+  //   .attr("y2", endingY)
+  //   .classed(`${arrowClassName}`, true);
 
   svgSelector
     .append("line")
@@ -108,5 +117,6 @@ function arrowAxis(svgSelector, column) {
       return axisText;
     })
     .attr("dx", startingX)
-    .attr("dy", endingY + textMargin);
+    .attr("dy", endingY + textMargin)
+    .classed(arrowClassName, true);
 }

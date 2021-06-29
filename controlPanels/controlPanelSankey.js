@@ -2,10 +2,13 @@ import { stateData } from "../data/stateData.js";
 import { sankeyPreProcessing } from "../data/sankeyDataPreProcessing.js";
 import { sankeyGraphOptions } from "../graphDimensions/graphDimensionsSankey.js";
 import { graphRankings } from "../viz/rankingsGraphs.js";
-import { powerRankingsText, cleanRankingsText } from "./rankingsGraphText.js";
+import { rankingsTextFunc } from "./rankingsGraphText.js";
 
 const sankeyContainer = document.getElementById("cornerSankey");
 const powerContainer = document.getElementById("totalPowerContainer");
+
+const powerText = document.getElementById("totalPowerText");
+const cleanlinessText = document.getElementById("cleanlinessText");
 
 const powerSvg = d3.select("#totalPowerContainer").append("svg");
 powerSvg.attr("height", 300).attr("width", 400);
@@ -46,6 +49,15 @@ stateSelector.addEventListener("change", () => {
   )[0].State;
 
   const chart = new google.visualization.Sankey(sankeyContainer);
+
+  cleanlinessText.innerHTML = rankingsTextFunc(
+    currentAbbrevSelected,
+    "electric_cleanliness"
+  );
+  powerText.innerHTML = rankingsTextFunc(
+    currentAbbrevSelected,
+    "totalConsumed"
+  );
 
   drawChartSankey(currentAbbrevSelected);
 

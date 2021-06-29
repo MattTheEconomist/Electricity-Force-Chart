@@ -90,3 +90,13 @@
   margin: auto;
   font-family: "Quicksand", sans-serif;
 }
+
+.rankSentence {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+}
+
+.rankString {
+  font: bold;
+  font-weight: 700;
+}
