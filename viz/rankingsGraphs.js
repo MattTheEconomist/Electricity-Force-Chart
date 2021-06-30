@@ -5,7 +5,7 @@ const graphDimensions_rankings = {
   //   height: 150,
   height: 200 - graphMargin.top - graphMargin.bottom,
   width: 550 - graphMargin.right - graphMargin.left,
-  barWidth: 7,
+  barWidth: 9,
   barToBar: 8,
 };
 
@@ -31,6 +31,15 @@ export function graphRankings(column, State, svgSelector) {
     .domain([0, d3.max(yData)])
     .range([0, height]);
 
+  const rankTooltip = d3
+    .select("body")
+    .append("div")
+    .attr("class", "rankTooltip")
+    .style("width", "100px")
+    .style("height", "100px")
+    .style("position", "absolute")
+    .style("opacity", 0);
+
   svgSelector
     .selectAll("bar")
     .data(stateDataSorted)
@@ -47,7 +56,32 @@ export function graphRankings(column, State, svgSelector) {
     .attr("y", (d, i) => height - yScale(yData[i]) + graphMargin.top)
     .attr("width", 6)
     .attr("height", (d, i) => yScale(yData[i]) + 20)
-    .classed(barClassName, true);
+    .classed(barClassName, true)
+    .on("mouseover", (d) => {
+      rankTooltip
+        .style("opacity", 0.9)
+        .style("left", d3.event.pageX + "px")
+        .style("top", d3.event.pageY - 108 + "px")
+        // .html(d.name);
+        .html(tooltipRankText(d, column));
+    })
+    .on("mouseout", () => {
+      rankTooltip.style("opacity", 0);
+    });
+  // .on("mouseout", function (d) {
+  //   setTimeout(() => {
+  //     rankTooltip.style("opacity", 0);
+  //   }, 1000);
+  // });
+
+  // .attr("id", `${toolTip_}`)
+
+  // const rankTooltip = d3
+  // // .select(svgSelector)
+  // .select("body")
+  // .append("div");
+  // // .attr("height", 100)
+  // // .attr("width", 100);
 
   arrowAxis(svgSelector, column);
 }
@@ -71,16 +105,6 @@ function arrowAxis(svgSelector, column) {
   const endingY = 175;
   const arrowCurve = 15;
   const textMargin = 5;
-
-  // svgSelector
-  //   .append("line")
-  //   .style("stroke", "black")
-  //   .style("stroke-width", 1)
-  //   .attr("x1", startingX)
-  //   .attr("y1", endingY)
-  //   .attr("x2", endingX)
-  //   .attr("y2", endingY)
-  //   .classed(`${arrowClassName}`, true);
 
   svgSelector
     .append("line")
@@ -119,4 +143,25 @@ function arrowAxis(svgSelector, column) {
     .attr("dx", startingX)
     .attr("dy", endingY + textMargin)
     .attr("class", `${arrowClassName} arrowText`);
+}
+
+function tooltipRankText(d, column) {
+  let quantity;
+
+  const state = d.name;
+
+  if (column === "totalConsumed") {
+    quantity = d.totalConsumed;
+    // quantity =
+    quantity = Math.round(quantity);
+
+    return `<span class="stateNameTooltip">${state}</span> </br> produces ${quantity} BTU of Electricity`;
+  }
+  if (column === "electric_cleanliness") {
+    quantity = d.electric_cleanliness;
+    quantity = Math.round(quantity);
+    return `<span class="stateNameTooltip">${state}</span> </br>has electric cleanliness of ${quantity} C02/BTU`;
+  }
+
+  // return `${state} ${units} of ${quantity} `;
 }
