@@ -47,9 +47,17 @@ export function sankeyPreProcessing(State) {
     ]);
   }
 
-  const dataRows = dataRows_gen.concat(dataRows_cons);
+  let dataRows = dataRows_gen.concat(dataRows_cons);
 
-  // console.log(dataRows);
+  dataRows = dataRows.map((el) => {
+    let electricQuantity = parseFloat(el[2].toFixed(2));
+
+    el[2] = electricQuantity;
+
+    return el;
+  });
+
+  console.log(dataRows);
 
   return dataRows;
 }

@@ -58,10 +58,10 @@ function arrowAxis(svgSelector, column) {
   let endingXBuffer;
 
   if (column === "totalConsumed") {
-    endingXBuffer = 125;
+    endingXBuffer = 135;
   }
   if (column === "electric_cleanliness") {
-    endingXBuffer = 135;
+    endingXBuffer = 140;
   }
 
   d3.selectAll(`.${arrowClassName}`).remove();
@@ -90,7 +90,7 @@ function arrowAxis(svgSelector, column) {
     .attr("y1", endingY - arrowCurve)
     .attr("x2", endingX)
     .attr("y2", endingY)
-    .classed(`${arrowClassName}`, true);
+    .attr("class", `${arrowClassName}`);
 
   svgSelector
     .append("line")
@@ -100,7 +100,7 @@ function arrowAxis(svgSelector, column) {
     .attr("y1", endingY + arrowCurve)
     .attr("x2", endingX)
     .attr("y2", endingY)
-    .classed(arrowClassName, true);
+    .attr("class", `${arrowClassName}`);
 
   svgSelector
     .append("text")
@@ -118,5 +118,5 @@ function arrowAxis(svgSelector, column) {
     })
     .attr("dx", startingX)
     .attr("dy", endingY + textMargin)
-    .classed(arrowClassName, true);
+    .attr("class", `${arrowClassName} arrowText`);
 }

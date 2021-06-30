@@ -69,12 +69,37 @@ function drawChartSankey(State) {
   var data = new google.visualization.DataTable();
   data.addColumn("string", "From");
   data.addColumn("string", "To");
-  data.addColumn("number", "Weight");
+  data.addColumn("number", "Trillion BTU");
+  data.addColumn({ type: "string", role: "tooltip" });
 
-  data.addRows(sankeyPreProcessing(currentAbbrevSelected));
+  let dataRows = sankeyPreProcessing(currentAbbrevSelected);
+
+  dataRows.map((d) => {
+    const electricityUnits = d[2];
+
+    let relavantNode;
+
+    if (d[0] === "Total Electricity") {
+      relavantNode = d[1];
+    }
+    if (d[1] === "Total Electricity") {
+      relavantNode = d[0];
+    }
+
+    d.push(
+      // " This is an HTML tooltip<br>It needs to be formatted nicely<br>in a rectangular box that is not <i>long and thin</i>"
+      `<div id="sankTooltip"> ${relavantNode} <br> ${electricityUnits} Trillion BTU </br> </div>`
+    );
+    return d;
+  });
+
+  data.addRows(dataRows);
+
+  // data.addRows(sankeyPreProcessing(currentAbbrevSelected));
 
   var chart = new google.visualization.Sankey(
-    document.getElementById("cornerSankey")
+    document.getElementById("cornerSankey", "HTML_tooltip")
   );
+
   chart.draw(data, sankeyGraphOptions(currentAbbrevSelected));
 }

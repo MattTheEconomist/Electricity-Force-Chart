@@ -4,10 +4,10 @@ const sankeyWidth = sankeyDimensions.width;
 
 const svgLabels = d3.select("#sankeyLabels").append("svg");
 
-svgLabels.attr("height", 100).attr("width", sankeyWidth);
+svgLabels.attr("height", 50).attr("width", sankeyWidth);
 //   .style("background-color", "green");
 
-const textYPoz = 90,
+const textYPoz = 20,
   marginRight = 150;
 
 // const generationText
@@ -25,3 +25,7 @@ svgLabels
   .attr("dy", textYPoz)
   .attr("class", "sankeyLabelText")
   .attr("text-anchor", "end");
+
+svgLabels;
+// .attr("fill", "green")
+// .style("background-color", "green");

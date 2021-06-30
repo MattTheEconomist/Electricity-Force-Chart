@@ -16,7 +16,7 @@ export function rankingsTextFunc(currentAbbrevSelected, units) {
   }
 
   if (units === "totalConsumed") {
-    unitsText = "Total Power Consumption";
+    unitsText = "Total Electricity Consumption";
   }
 
   return `<span class="rankSentence">${stateName} is ranked <span class="rankString">${rankString}</span> in ${unitsText}</span>`;
@@ -51,7 +51,7 @@ function formatNumberString(rank) {
   if (lastDigit === "3") {
     suffix = "rd";
   }
-  if (numberString === "11" || numberString === "12") {
+  if (numberString === "11" || "12") {
     suffix = "th";
   }
 

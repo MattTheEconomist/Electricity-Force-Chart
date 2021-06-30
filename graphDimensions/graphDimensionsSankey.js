@@ -39,6 +39,10 @@ export function sankeyGraphOptions(currentAbbrevSelected) {
         colorMode: "gradient",
         colors: colorNodes(currentAbbrevSelected),
       },
+      allowHtml: "true",
+      tooltip: {
+        isHtml: "true",
+      },
     },
   };
 
