@@ -127,9 +127,9 @@ function coalText() {
 function renewableText() {
   clearExistingText();
 
-  const lowText = "Low (less than 10%)";
-  const mediumText = "Medium (less than 10%)";
-  const highText = "High (less than 10%)";
+  const lowText = "Low Renewables (less than 8%)";
+  const mediumText = "Medium Renewables (between 8% and 15%)";
+  const highText = "High Renewables (greater than 15%)";
 
   let svg = d3.select("svg");
 

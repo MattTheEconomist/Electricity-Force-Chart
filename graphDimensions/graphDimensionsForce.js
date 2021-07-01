@@ -1,6 +1,6 @@
 export const graphDimensions = {
   width: 800,
-  height: 350,
+  height: 400,
   focalXdistance: 200,
   focalYdistance: 100,
 };
@@ -15,7 +15,7 @@ const fourGroupingsXPozLeft = width / 2 - focalXdistance;
 const fourGroupingsYPozTop = height / 2 - focalYdistance;
 const fourGroupingsYPozBottom = height / 2 + focalYdistance;
 
-const threeGroupingsXMargin = 255;
+const threeGroupingsXMargin = 315;
 
 const threeGroupingsXPozMiddle = width / 2;
 const threeGroupingsXPozLeft = threeGroupingsXPozMiddle - threeGroupingsXMargin;

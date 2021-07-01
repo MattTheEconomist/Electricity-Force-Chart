@@ -41,7 +41,7 @@ let simulation = d3
   .force(
     "collision",
     d3.forceCollide().radius(function (d) {
-      return radiusCalc(d.electricityGenerated);
+      return radiusCalc(d.totalGenerated);
     })
   );
 
@@ -63,7 +63,7 @@ const nodes = svg
   .enter()
   .append("circle")
   .attr("r", (d) => {
-    return radiusCalc(d.electricityGenerated);
+    return radiusCalc(d.totalGenerated);
   })
   .style("fill", function (d, i) {
     const cleanliness = d.electric_cleanliness;
@@ -77,6 +77,9 @@ const nodes = svg
       saturation = colorsCleanlinessBest(cleanliness);
       return `hsla(110, ${saturation}%, 50%, 1)`;
     }
+  })
+  .on("click", (d) => {
+    console.log(d.State);
   });
 
 //Add a simple tooltip

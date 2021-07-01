@@ -19,7 +19,7 @@ export function rankingsTextFunc(currentAbbrevSelected, units) {
     unitsText = "Total Electricity Consumption";
   }
 
-  return `<span class="rankSentence">${stateName} is ranked <span class="rankString">${rankString}</span> in ${unitsText}</span>`;
+  return `<span class="rankSentence" >${stateName} is ranked <span class="rankString">${rankString}</span> in ${unitsText}</span>`;
 }
 
 function calculateRank(currentAbbrevSelected, units) {
