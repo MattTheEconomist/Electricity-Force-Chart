@@ -26,36 +26,97 @@
 #allVizContainer {
   margin-left: 10%;
   width: 100vw;
+  /* margin-right: -1000px; */
   /* background-color: aqua; */
   /* display: flex; */
   justify-content: center;
   display: grid;
-  grid-template-columns: 30fr 1fr 1fr;
-  /* grid-template-rows: 1fr 1fr; */
+  grid-template-columns: 0.3fr 4fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-rows: 350px 200px;
+  /* padding-left: -10%; */
 }
 
 #fullSankeyContainer {
-  /* border: 1px solid black; */
   height: 350px;
-  width: 75%;
-  /* width: 300px; */
+  width: 70%;
   padding: 3%;
+  margin-right: -5%;
   margin-bottom: -5rem;
   justify-content: center;
-  /* margin-left: -2%; */
 
-  /* margin-top: -5rem; */
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
 #rankingGraphsArea {
   display: flex;
+  background-color: white;
   width: 500px;
   height: 300px;
   margin-top: 10rem;
   margin-left: 17%;
+  grid-column-start: 1;
+  grid-column-end: 3;
   grid-row-start: 2;
-  /* padding-top: -55rem; */
+  grid-row-end: 3;
+}
+#rightSideDiv {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 4;
+  height: 150%;
+  margin-right: -100%;
+}
+
+#leftSideDiv {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 4;
+
+  margin-left: -200px;
+  height: 150%;
+}
+
+#footerDiv {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+
+#cleanlinessArea {
+  /* margin-top: -18px; */
+  width: 500px;
+}
+
+#cleanlinessText {
+  width: 100%;
+}
+
+#cleanlinessContainer {
+  margin-left: 40px;
+}
+
+#totalPowerArea {
+  /* margin-left: 40px; */
+}
+
+#totalPowerContainer {
+  margin-left: 5px;
+}
+
+body {
+  /* background-color: rgb(31, 245, 145); */
+}
+
+.outsideDiv {
+  background-color: rgb(177, 233, 207);
+  background-image: url("https://www.transparenttextures.com/patterns/arches.png");
 }
 
 .graphArea {
@@ -67,7 +128,7 @@
 #cornerSankey {
   width: 10rem;
   height: 5rem;
-  padding-top: -10rem;
+  /* padding-top: -10rem; */
   /* background-color: aqua; */
 }
 
@@ -78,9 +139,9 @@
   /* background-color: aqua; */
 }
 
-#HTML_tooltip {
+/* #HTML_tooltip {
   background-color: black;
-}
+} */
 
 .google-visualization-tooltip {
   background-color: grey;
@@ -99,15 +160,16 @@
 }
 
 .rankTooltip {
-  background-color: rgb(139, 204, 204);
+  background-color: rgb(191, 216, 216);
   position: absolute;
   text-align: center;
   width: 60px;
-  height: 28px;
-  padding: 2px;
+  /* height: 10px; */
+  /* height: auto; */
+  max-height: 60px;
+  padding-top: 3px;
+  /* padding: 2px; */
   font: 12px sans-serif;
-  background: lightsteelblue;
-  border: 0px;
   border-radius: 8px;
   pointer-events: none;
 }
@@ -142,6 +204,18 @@
 
 .rankText {
   margin-top: -3rem;
+  /* margin-left: -2.5rem; */
+}
+.rankSentence {
+  /* margin-left: -2rem; */
+}
+
+#cleanlinesstext {
+  /* padding-right: -2000px; */
+  padding-left: 500px;
+  /* padding-left: -200px; */
+  justify-content: left;
+  margin-right: -600px;
 }
 
 .sankeyLabelText {
@@ -154,7 +228,11 @@
 #dropdownArea {
   display: flex;
   flex-direction: row;
-  background-color: #bceaea;
+  background-color: #7df7f7;
+  border: 1px solid black;
+  margin-top: -10px;
+  margin-right: -10px;
+  margin-left: -10px;
 }
 
 #dropdownLabel {

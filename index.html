@@ -39,38 +39,37 @@
     ></script>
   </head>
   <body>
-    <!-- <div id="selectMe"></div> -->
-    <!-- <div id="sankey_basic" style="width: 900px; height: 300px"></div> -->
-    <!-- <div id="forceViz"></div> -->
+    <!-- <div id="selectMe"></div>
+    <div id="forceViz"></div>
 
-    <!-- <div id="controlPanel">
-    <span>Change Grouping</span>
-    <table>
-      <tr>
-        <td>
-          <button class="groupingBtn" id="groupRegion">Region</button>
-        </td>
-        <td>
-          <button class="groupingBtn" id="groupPopulation">Population</button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button class="groupingBtn" id="groupRenewable">
-            Renewables Percent
-          </button>
-        </td>
-        <td>
-          <button class="groupingBtn" id="groupCoal">Coal Percent</button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button class="groupingBtn" id="groupDefault">Default</button>
-        </td>
-      </tr>
-    </table>
-  </div> -->
+    <div id="controlPanel">
+      <span>Change Grouping</span>
+      <table>
+        <tr>
+          <td>
+            <button class="groupingBtn" id="groupRegion">Region</button>
+          </td>
+          <td>
+            <button class="groupingBtn" id="groupPopulation">Population</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="groupingBtn" id="groupRenewable">
+              Renewables Percent
+            </button>
+          </td>
+          <td>
+            <button class="groupingBtn" id="groupCoal">Coal Percent</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="groupingBtn" id="groupDefault">Default</button>
+          </td>
+        </tr>
+      </table>
+    </div> -->
 
     <div id="dropdownArea">
       <h3 id="dropdownLabel">Change your State Selected</h3>
@@ -88,11 +87,14 @@
           <div id="totalPowerContainer"></div>
         </div>
 
-        <div id="cleanlinessArea">
-          <div id="cleanlinessText" class="rankText"></div>
+        <div id="cleanlinessArea" class="graphArea">
+          <div id="cleanlinessText" class="rankText graphArea"></div>
           <div id="cleanlinessContainer"></div>
         </div>
       </div>
+      <div id="rightSideDiv" class="outsideDiv"></div>
+      <div id="footerDiv" class="outsideDiv"></div>
+      <div id="leftSideDiv" class="outsideDiv"></div>
     </div>
 
     <!-- <h3 class="header" id="headerId">hello</h3> -->
