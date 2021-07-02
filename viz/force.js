@@ -4,7 +4,10 @@ import { xPositionCall, yPositionCall } from "../controlPanelGroupings.js";
 
 import { textFunctionCall } from "../controlPanelText.js";
 
-import { graphDimensions } from "../graphDimensions/graphDimensionsForce.js";
+import {
+  graphDimensions,
+  radiusCalc,
+} from "../graphDimensions/graphDimensionsForce.js";
 
 import {
   colorsCleanlinessBest,
@@ -48,14 +51,22 @@ let simulation = d3
 const colors = d3.scaleOrdinal(d3.schemeCategory10);
 
 //Create SVG element
-const svg = d3
-  .select("#forceViz")
+const forceSvg = d3
+  .select("#forceVizContainer")
   .append("svg")
   .attr("width", width)
-  .attr("height", height);
+  .attr("height", height)
+  .attr("id", "forceViz");
+
+const forceTooltip = d3
+  .select("body")
+  .append("div")
+  .attr("id", "forceTooltip")
+  .style("position", "absolute")
+  .style("opacity", 0);
 
 //Create nodes as circles
-const nodes = svg
+const nodes = forceSvg
   .selectAll("circle")
   .attr("id", "forceSVG")
   .data(stateData)
@@ -79,13 +90,19 @@ const nodes = svg
     }
   })
   .on("click", (d) => {
+    // zoom functionality goes here
     console.log(d.State);
+  })
+  .on("mouseover", (d) => {
+    forceTooltip
+      .style("opacity", 0.9)
+      .style("left", d3.event.pageX + 5 + "px")
+      .style("top", d3.event.pageY - 50 + "px")
+      .html(forceTooltipText(d));
+  })
+  .on("mouseout", () => {
+    forceTooltip.style("opacity", 0);
   });
-
-//Add a simple tooltip
-nodes.append("title").text(function (d) {
-  return d.State;
-});
 
 //Every time the simulation "ticks", this will be called
 simulation.on("tick", ticked);
@@ -98,11 +115,6 @@ function ticked() {
     .attr("cy", function (d) {
       return d.y;
     });
-}
-
-function radiusCalc(val) {
-  return val / 90;
-  // return val;
 }
 
 const groupingButtons = document.getElementsByClassName("groupingBtn");
@@ -120,4 +132,25 @@ function changeGrouping(el) {
   simulation.alpha(0.7).restart();
   simulation.force("x").initialize(stateData);
   simulation.force("y").initialize(stateData);
+}
+
+function forceTooltipText(d) {
+  forceTooltip.style("background-color", "white");
+
+  const stateName = d.name;
+  const totalElectricity = Math.round(d.totalGenerated);
+  const electric_cleanliness = d.electric_cleanliness.toFixed(2);
+
+  return `<span id="forceTooltipState"> ${stateName}</span>
+
+  <table>
+  <tr>
+  <td>Electricity Generated: </td>
+  <td>${totalElectricity}</td>
+  </tr>
+  <tr>
+  <td>Electric Cleanliness: </td>
+  <td>${electric_cleanliness}</td>
+  </tr>
+  </table>`;
 }

@@ -24,6 +24,11 @@
   /* padding: 2rem; */
 }
 
+.scaleText {
+  font-size: 15px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 400;
+}
 #allVizContainer {
   margin-left: 10%;
   width: 100vw;
@@ -140,10 +145,6 @@ body {
   /* background-color: aqua; */
 }
 
-/* #HTML_tooltip {
-  background-color: black;
-} */
-
 .google-visualization-tooltip {
   background-color: grey;
 }
@@ -173,6 +174,29 @@ body {
   font: 12px sans-serif;
   border-radius: 8px;
   pointer-events: none;
+}
+
+#forceTooltip {
+  /* height: 50px; */
+  /* width: 200px; */
+  font-size: small;
+  font-family: "Quicksand", sans-serif;
+  padding-left: 1%;
+  padding-right: 1%;
+  border-radius: 5px;
+  /* justify-content: center; */
+}
+#forceTooltipState {
+  /* margin-right: 5%; */
+  margin-right: 50px;
+  margin-left: 50px;
+  font-weight: bold;
+  /* opacity: 0.9; */
+}
+
+.forceChartGroupText {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
 }
 
 .stateNameTooltip {

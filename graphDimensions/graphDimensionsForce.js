@@ -23,20 +23,33 @@ const threeGroupingsXPozRight =
   threeGroupingsXPozMiddle + threeGroupingsXMargin;
 const threeGroupingsYPoz = height / 2;
 
-const textMarginBottom = 80;
-const textMargnRight = 50;
+const threeGroupingsTextMarginBottom = 125;
+// const textMargnRight = 50;
+const textMargnRight = 0;
 
-const threeGroupingsYPozText = threeGroupingsYPoz - textMarginBottom;
+const fourGroupingsTextMarginBottom = 75;
+
+const threeGroupingsYPozText =
+  threeGroupingsYPoz - threeGroupingsTextMarginBottom;
 const threeGroupingsXPozMiddleText = threeGroupingsXPozMiddle - textMargnRight;
 const threeGroupingsXPozLeftText = threeGroupingsXPozLeft - textMargnRight;
 const threeGroupingsXPozRightText = threeGroupingsXPozRight - textMargnRight;
 
-const fourGroupingsYPozBottomText = fourGroupingsYPozBottom - textMarginBottom;
-const fourGroupingsYPozTopText = fourGroupingsYPozTop - textMarginBottom;
-const fourGroupingsXPozLeftText = fourGroupingsXPozLeft - textMargnRight;
-const fourGroupingsXPozRightText = fourGroupingsXPozRight - textMargnRight;
+const fourGroupingsYPozBottomText =
+  fourGroupingsYPozBottom - fourGroupingsTextMarginBottom;
+const fourGroupingsYPozTopText =
+  fourGroupingsYPozTop - fourGroupingsTextMarginBottom;
+const fourGroupingsXPozLeftText = fourGroupingsXPozLeft - 50;
+const fourGroupingsXPozRightText = fourGroupingsXPozRight - 50;
+
+const secondTextLineYAdd = 15;
+
+function radiusCalc(val) {
+  return val / 90;
+}
 
 export {
+  radiusCalc,
   fourGroupingsYPozTopText,
   fourGroupingsYPozBottomText,
   threeGroupingsYPozText,
@@ -57,4 +70,5 @@ export {
   threeGroupingsXPozRight,
   threeGroupingsXPozLeftText,
   threeGroupingsXPozRightText,
+  secondTextLineYAdd,
 };
