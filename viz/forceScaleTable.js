@@ -1,11 +1,21 @@
 import { radiusCalc } from "../graphDimensions/graphDimensionsForce.js";
 
+const scaleSvgDimensions = {
+  width: 320,
+  height: 150,
+  textLeft: 50,
+  circleRight: 5,
+  circleTop: 70,
+  scaleTextBottom: 30,
+};
+
 const scaleSvg = d3
   .select("#forceScale")
   .append("svg")
-  .attr("height", 200)
-  .attr("width", 500);
-//   .attr("fill", "green");
+  .attr("height", scaleSvgDimensions.height)
+  .attr("width", scaleSvgDimensions.width);
+
+// .style("background-color", "green");
 
 const circleData = [200, 500, 1000, 1500, 2000, 3000];
 
@@ -29,11 +39,9 @@ scaleSvg
     return radiusCalc(d);
   })
   .attr("cx", (d, i) => {
-    let xPoz;
-    xPoz = circleXPoz[d];
-    return xPoz + marginLeft;
+    return circleXPoz[d] - scaleSvgDimensions.circleRight;
   })
-  .attr("cy", 100)
+  .attr("cy", scaleSvgDimensions.circleTop)
   .attr("fill", "white")
   .attr("stroke", "grey")
   .attr("stroke-width", 2)
@@ -49,29 +57,16 @@ scaleSvg
     return d;
   })
   .attr("x", (d) => {
-    return circleXPoz[d];
+    return circleXPoz[d] - scaleSvgDimensions.circleRight;
   })
-  .attr("y", 160)
-  .fill("grey");
+  .attr("y", scaleSvgDimensions.height - scaleSvgDimensions.scaleTextBottom)
+  .attr("text-anchor", "middle");
+// .stroke("grey");
 
 scaleSvg
-  .select("#scaleTextTitle")
   .append("text")
-  .text(() => {
-    return "Total Electricity Generated (trillion BTU)";
-  })
-  .attr("x", 100)
-  .attr("y", 200)
-  //   .attr("class", "scaleText")
+  .text("Total Electricity Generated (trillion BTU)")
+  .attr("x", scaleSvgDimensions.width / 2 - 12)
+  .attr("y", 20)
+  .attr("text-anchor", "middle")
   .attr("id", "scaleTextTitle");
-
-// scaleSvg
-//   //   .select("#scaleTextTitle")
-//   .insert("text")
-//   .text(() => {
-//     return "Total Electricity Generated (trillion BTU)";
-//   })
-//   .attr("x", 100)
-//   .attr("y", 200)
-//   //   .attr("class", "scaleText")
-//   .attr("id", "scaleTextTitle");

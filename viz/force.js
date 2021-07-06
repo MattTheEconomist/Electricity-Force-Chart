@@ -73,6 +73,7 @@ const nodes = forceSvg
   // .data(testData)
   .enter()
   .append("circle")
+  .attr("class", "forceCircle")
   .attr("r", (d) => {
     return radiusCalc(d.totalGenerated);
   })
@@ -89,10 +90,6 @@ const nodes = forceSvg
       return `hsla(110, ${saturation}%, 50%, 1)`;
     }
   })
-  .on("click", (d) => {
-    // zoom functionality goes here
-    console.log(d.State);
-  })
   .on("mouseover", (d) => {
     forceTooltip
       .style("opacity", 0.9)
@@ -102,7 +99,48 @@ const nodes = forceSvg
   })
   .on("mouseout", () => {
     forceTooltip.style("opacity", 0);
+  })
+  .on("dblclick", function (d) {
+    console.log(d.State);
+
+    const activeState = d.State;
+
+    d3.select(this)
+      .attr("class", "forceCircle active")
+      .transition()
+      .duration(1500)
+      .attr("r", 500);
+
+    // simulation.alpha(0.7).restart();
+
+    simulation.force("charge", d3.forceManyBody().strength(0.3));
+
+    // for (let i = 0; i < 1500; i += 50) {
+    //   setTimeout(() => {
+    //     simulation.force(
+    //       "collision",
+    //       d3.forceCollide().radius(function (d) {
+    //         if (d.State === activeState) {
+    //           return i / 9;
+    //         } else {
+    //           return radiusCalc(d.totalGenerated);
+    //         }
+    //       })
+    //     );
+
+    //     console.log("hi");
+    //   }, 50);
+    // }
   });
+
+// d3.selectAll(".forceCircle").filter(function () {
+//   return !this.classList.contains("active");
+// });
+// .transition()
+// .duration(1000)
+// .attr("opacity", 0);
+// .style("fill", "blue");
+// });
 
 //Every time the simulation "ticks", this will be called
 simulation.on("tick", ticked);

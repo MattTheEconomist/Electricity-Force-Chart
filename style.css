@@ -1,16 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
 
-.groupingBtn {
-  width: 6rem;
-  margin: 3%;
-  background-color: rgb(206, 197, 197);
-  border-radius: 5px;
-  border: white;
-  height: 2rem;
+#entireForceContainer {
+  width: 100vw;
+  justify-content: center;
+  /* background-color: aqua; */
+  padding-left: 25%;
+  padding-right: 15%;
 }
 
-.groupingBtn:focus {
-  background-color: #b89c9c;
+#forceTitle {
+  justify-content: center;
+  padding-left: 9%;
+  margin-bottom: -1.5%;
+  font-size: 35px;
+  font-family: "Quicksand", sans-serif;
+}
+
+#controlPanel {
+  border: 2px solid black;
+  /* border-right: 1px solid grey; */
+  padding-left: 1%;
+  padding-right: 1%;
+  margin-left: -1%;
 }
 
 #forceViz {
@@ -24,11 +35,48 @@
   /* padding: 2rem; */
 }
 
+#forceFooter {
+  display: flex;
+}
+
+#scaleContainer {
+  /* width: 50%; */
+  width: 700px;
+}
+#forceScale {
+  float: left;
+  border-right: 1px solid grey;
+}
+
+#colorScale {
+  float: right;
+  margin-left: -100px;
+}
+
 .scaleText {
-  font-size: 15px;
+  font-size: 12px;
   font-family: "Quicksand", sans-serif;
   font-weight: 400;
 }
+
+#scaleTextTitle {
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+}
+
+.groupingBtn {
+  width: 6rem;
+  margin: 3%;
+  background-color: rgb(206, 197, 197);
+  border-radius: 5px;
+  border: white;
+  height: 2rem;
+}
+
+.groupingBtn:focus {
+  background-color: #b89c9c;
+}
+
 #allVizContainer {
   margin-left: 10%;
   width: 100vw;

@@ -15,3 +15,5 @@ export const colorsCleanlinessWorst = d3
   .scaleLinear()
   .domain([42, 84])
   .range([0, 100]);
+
+export { worstColor, medianColor, bestColor };

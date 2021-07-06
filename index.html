@@ -19,6 +19,7 @@
     <script src="./viz/sankeyLabels.js" type="module"></script>
     <script src="./viz/rankingsGraphs.js" type="module"></script>
     <script src="./viz/forceScaleTable.js" type="module"></script>
+    <script src="./viz/forceColorTable.js" type="module"></script>
 
     <script src="./controlPanelGroupings.js" type="module"></script>
     <script src="./controlPanelText.js" type="module"></script>
@@ -40,9 +41,15 @@
     ></script>
   </head>
   <body>
-    <div id="forceScale"></div>
+    
+    <div id="entireForceContainer">
+    <div id="forceTitle">
+      <h5>How Clean is your State's Electricity? </h5>
+    </div>
     <div id="forceVizContainer"></div>
 
+
+    <div id="forceFooter">
     <div id="controlPanel">
       <span>Change Grouping</span>
       <table>
@@ -71,6 +78,13 @@
         </tr>
       </table>
     </div>
+    <div id="scaleContainer">
+      <div id="forceScale"></div>
+      <div id="colorScale"></div>
+    </div>
+
+  </div>
+</div>
 
     <!-- <div id="dropdownArea">
       <h3 id="dropdownLabel">Change your State Selected</h3>
@@ -95,7 +109,7 @@
       </div>
       <div id="rightSideDiv" class="outsideDiv"></div>
       <div id="footerDiv" class="outsideDiv"></div>
-      <div id="leftSideDiv" class="outsideDiv"></div>
-    </div> -->
+      <div id="leftSideDiv" class="outsideDiv"></div> -->
+    </div>
   </body>
 </html>
