@@ -57,8 +57,6 @@ export function sankeyPreProcessing(State) {
     return el;
   });
 
-  console.log(dataRows);
-
   return dataRows;
 }
 

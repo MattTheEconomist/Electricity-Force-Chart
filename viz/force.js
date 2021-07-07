@@ -21,6 +21,8 @@ const width = graphDimensions.width,
 
 let groupingSelected = "groupDefault";
 
+let selectedStateFromForce = "XX";
+
 //Initialize a simple force layout, using the nodes and edges in dataset
 
 let simulation = d3
@@ -74,6 +76,9 @@ const nodes = forceSvg
   .enter()
   .append("circle")
   .attr("class", "forceCircle")
+  .attr("id", (d) => {
+    return d.State;
+  })
   .attr("r", (d) => {
     return radiusCalc(d.totalGenerated);
   })
@@ -100,47 +105,52 @@ const nodes = forceSvg
   .on("mouseout", () => {
     forceTooltip.style("opacity", 0);
   })
-  .on("dblclick", function (d) {
-    console.log(d.State);
+  .on("dblclick", function (d1) {
+    const activeState = d1.State;
 
-    const activeState = d.State;
+    // d3.select(this)
+    //   .attr("class", "forceCircle active")
+    //   .transition()
+    //   .duration(1500)
+    //   .attr("r", 900);
 
-    d3.select(this)
-      .attr("class", "forceCircle active")
-      .transition()
-      .duration(1500)
-      .attr("r", 500);
+    const selectedStateX = this.cx.baseVal.value;
+    // const selectedStateY = this.cy.baseVal.value;
 
-    // simulation.alpha(0.7).restart();
+    // simulation.force(
+    //   "x",
+    //   d3.forceX().x((d) => {
+    //     if (d.State !== activeState) {
+    //       const stateX = d3.select(`#${d.State}`)._groups[0][0].cx.baseVal
+    //         .value;
 
-    simulation.force("charge", d3.forceManyBody().strength(0.3));
+    //       if (stateX > selectedStateX) {
+    //         return 1500;
+    //       } else {
+    //         return -1000;
+    //       }
+    //     } else {
+    //       return selectedStateX;
+    //     }
+    //   })
+    // );
 
-    // for (let i = 0; i < 1500; i += 50) {
-    //   setTimeout(() => {
-    //     simulation.force(
-    //       "collision",
-    //       d3.forceCollide().radius(function (d) {
-    //         if (d.State === activeState) {
-    //           return i / 9;
-    //         } else {
-    //           return radiusCalc(d.totalGenerated);
-    //         }
-    //       })
-    //     );
+    // d3.selectAll(".forceChartGroupText")
+    //   .transition()
+    //   .duration(500)
+    //   .style("opacity", 0);
+    // simulation.alpha(0.3).restart();
 
-    //     console.log("hi");
-    //   }, 50);
-    // }
+    // setTimeout(() => {
+    //   d3.select("#entireForceContainer")
+    //     .attr("class", "hideMe")
+    //     // .attr("height", 0);
+    //     .style("height", 0);
+    //   d3.select("#entireSankeyContainer").classed("hideMe", false);
+    // }, 1500);
+
+    // selectedStateFromForce = activeState;
   });
-
-// d3.selectAll(".forceCircle").filter(function () {
-//   return !this.classList.contains("active");
-// });
-// .transition()
-// .duration(1000)
-// .attr("opacity", 0);
-// .style("fill", "blue");
-// });
 
 //Every time the simulation "ticks", this will be called
 simulation.on("tick", ticked);
@@ -166,7 +176,6 @@ function changeGrouping(el) {
 
   textFunctionCall[groupingSelected]();
 
-  // console.log("grouping changed", groupingSelected);
   simulation.alpha(0.7).restart();
   simulation.force("x").initialize(stateData);
   simulation.force("y").initialize(stateData);
@@ -192,3 +201,5 @@ function forceTooltipText(d) {
   </tr>
   </table>`;
 }
+
+export { selectedStateFromForce, simulation };

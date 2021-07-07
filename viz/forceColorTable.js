@@ -24,8 +24,6 @@ circleXPoz.push(width / 2 - circleBetween);
 circleXPoz.push(width / 2);
 circleXPoz.push(width / 2 + circleBetween);
 
-console.log(circleXPoz);
-
 const colorArray = [worstColor, medianColor, bestColor];
 
 colorSvg
