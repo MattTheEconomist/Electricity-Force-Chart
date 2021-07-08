@@ -68,20 +68,6 @@ export function graphRankings(column, State, svgSelector) {
     .on("mouseout", () => {
       rankTooltip.style("opacity", 0);
     });
-  // .on("mouseout", function (d) {
-  //   setTimeout(() => {
-  //     rankTooltip.style("opacity", 0);
-  //   }, 1000);
-  // });
-
-  // .attr("id", `${toolTip_}`)
-
-  // const rankTooltip = d3
-  // // .select(svgSelector)
-  // .select("body")
-  // .append("div");
-  // // .attr("height", 100)
-  // // .attr("width", 100);
 
   arrowAxis(svgSelector, column);
 }

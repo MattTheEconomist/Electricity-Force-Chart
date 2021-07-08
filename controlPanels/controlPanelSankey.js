@@ -3,7 +3,7 @@ import { sankeyPreProcessing } from "../data/sankeyDataPreProcessing.js";
 import { sankeyGraphOptions } from "../graphDimensions/graphDimensionsSankey.js";
 import { graphRankings } from "../viz/rankingsGraphs.js";
 import { rankingsTextFunc } from "./rankingsGraphText.js";
-import { selectedStateFromForce, simulation } from "../viz/force.js";
+import { runForceSimulation, changeGroupingDefault } from "../viz/force.js";
 
 const sankeyContainer = document.getElementById("cornerSankey");
 const powerContainer = document.getElementById("totalPowerContainer");
@@ -12,16 +12,18 @@ const powerText = document.getElementById("totalPowerText");
 const cleanlinessText = document.getElementById("cleanlinessText");
 
 const powerSvg = d3.select("#totalPowerContainer").append("svg");
-powerSvg.attr("height", 300).attr("width", 400);
+powerSvg.attr("height", 200).attr("width", 400);
 
 const cleanSvg = d3.select("#cleanlinessContainer").append("svg");
-cleanSvg.attr("height", 300).attr("width", 400);
+cleanSvg.attr("height", 200).attr("width", 400);
 
 google.charts.load("current", { packages: ["sankey"] });
 
 google.charts.setOnLoadCallback(drawChartSankey);
 
 const allStateNames = stateData.map((row) => row.name);
+
+allStateNames.sort((a, b) => (a === b ? 0 : a < b ? -1 : 1));
 
 let dropdownContainer = document.getElementById("dropdownContainer");
 
@@ -42,6 +44,32 @@ let currentStateSelected = "Alabama";
 let currentAbbrevSelected = "AL";
 
 let circleSelector = document.getElementsByClassName("forceCircle");
+
+const returnForceButton = document.querySelector("#returnForceBtn");
+
+returnForceButton.addEventListener("click", () => {
+  d3.select("#entireSankeyContainer")
+    .transition()
+    .duration(1500)
+    .style("opacity", 0);
+
+  // simulation.restart();
+
+  setTimeout(() => {
+    d3.select("#entireSankeyContainer")
+      .classed("hideMe", true)
+      .style("opacity", 0);
+
+    d3.select("#entireForceContainer")
+      .classed("hideMe", false)
+      .style("opacity", 1);
+
+    d3.select("#forceViz").remove();
+
+    runForceSimulation();
+    changeGroupingDefault();
+  }, 1500);
+});
 
 Array.from(circleSelector).forEach(function (element) {
   element.addEventListener("dblclick", () => {
@@ -76,6 +104,8 @@ function updateAllSankeyComponents() {
 
   graphRankings("totalConsumed", currentAbbrevSelected, powerSvg);
   graphRankings("electric_cleanliness", currentAbbrevSelected, cleanSvg);
+
+  updateSankeyTitle(currentAbbrevSelected);
 }
 
 function drawChartSankey(State) {
@@ -117,6 +147,17 @@ function drawChartSankey(State) {
   chart.draw(data, sankeyGraphOptions(currentAbbrevSelected));
 }
 
+function updateSankeyTitle(currentAbbrevSelected) {
+  // const titleContainer = document.getElementById("sankeyTitleContainer");
+  const titleContainer = document.querySelector("#sankeyTitleContainer");
+
+  let stateName = stateData.filter(
+    (row) => row.State === currentAbbrevSelected
+  )[0].name;
+
+  titleContainer.innerHTML = `<h3 id="sankeyTitleText">  <span id="sankeyTitleState">${stateName}</span> Electricity Makeup </h3>`;
+}
+
 function zoomForceChart(element) {
   const selectedStateName = element.id;
 
@@ -126,46 +167,32 @@ function zoomForceChart(element) {
     .attr("class", "forceCircle active")
     .transition()
     .duration(1500)
-    .attr("r", 900);
+    .attr("r", 115);
 
-  const selectedStateX = selectedStateElement._groups[0][0].cx.baseVal.value;
+  const otherStateElements = d3.selectAll(".forceCircle").filter(function () {
+    return this.id !== selectedStateName;
+  });
 
-  console.log(selectedStateX);
-
-  simulation.force(
-    "x",
-    d3.forceX().x((d) => {
-      if (d.State !== selectedStateName) {
-        const stateX = d3.select(`#${d.State}`)._groups[0][0].cx.baseVal.value;
-
-        if (stateX > selectedStateX) {
-          // return 1500;
-          return 1000;
-        } else {
-          return -100;
-        }
-      } else {
-        return selectedStateX;
-      }
-    })
-  );
-
-  simulation.alpha(0.3).restart();
+  otherStateElements.transition().duration(1000).style("opacity", 0);
 
   d3.selectAll(".forceChartGroupText")
     .transition()
     .duration(500)
     .style("opacity", 0);
 
+  d3.select("#entireForceContainer")
+    .transition()
+    .duration(2000)
+    .style("opacity", 0);
+
   setTimeout(() => {
     d3.select("#entireForceContainer")
       .attr("class", "hideMe")
-      // .attr("height", 0);
-      .style("height", 0);
-    d3.select("#entireSankeyContainer").classed("hideMe", false);
-  }, 1500);
+      .style("opacity", 0);
+    d3.select("#entireSankeyContainer")
+      .classed("hideMe", false)
+      .style("opacity", 1);
+  }, 2000);
 
   currentAbbrevSelected = selectedStateName;
-  // currentAbbrevSelected = "TX";
-  console.log(currentAbbrevSelected);
 }

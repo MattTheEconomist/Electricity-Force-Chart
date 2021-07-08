@@ -2,6 +2,11 @@
 
 .hideMe {
   visibility: hidden;
+  height: 0px;
+  opacity: 0;
+}
+
+.showMe {
 }
 
 #entireForceContainer {
@@ -16,6 +21,7 @@
   justify-content: center;
   padding-left: 9%;
   margin-bottom: -1.5%;
+  margin-top: -2%;
   font-size: 35px;
   font-family: "Quicksand", sans-serif;
 }
@@ -96,7 +102,7 @@
 }
 
 #fullSankeyContainer {
-  height: 350px;
+  height: 300px;
   width: 70%;
   padding: 3%;
   margin-right: -5%;
@@ -113,13 +119,16 @@
   display: flex;
   background-color: white;
   width: 500px;
-  height: 300px;
+  height: 150px;
   margin-top: 10rem;
   margin-left: 17%;
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
+  margin-top: 10%;
+  /* margin-bottom: -500px; */
+  /* margin-top: -1px; */
 }
 #rightSideDiv {
   grid-column-start: 3;
@@ -162,10 +171,15 @@
 
 #totalPowerArea {
   /* margin-left: 40px; */
+  height: 100px;
 }
 
 #totalPowerContainer {
   margin-left: 5px;
+  /* height: 100px; */
+  /* margin-top: -2%; */
+  /* height: -10px; */
+  /* padding: 1%; */
 }
 
 body {
@@ -181,6 +195,7 @@ body {
   margin-right: 15%;
   margin-left: 15%;
   background-color: white;
+  height: 20px;
 }
 
 #cornerSankey {
@@ -307,9 +322,9 @@ body {
   flex-direction: row;
   background-color: #7df7f7;
   border: 1px solid black;
-  margin-top: -10px;
-  margin-right: -10px;
-  margin-left: -10px;
+  margin-top: 5%;
+  /* margin-right: -10px; */
+  /* margin-left: -10px; */
 }
 
 #dropdownLabel {
@@ -323,9 +338,26 @@ body {
   height: 2rem;
   margin: auto;
   font-family: "Quicksand", sans-serif;
-  font-size: 18px;
+  font-size: 20px;
 }
 
+#sankeyTitleContainer {
+  justify-content: center;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  width: 100%;
+  height: 20px;
+  display: table;
+  text-align: center;
+  background-color: rgb(149, 201, 201);
+  /* margin-bottom: -1%; */
+}
+#sankeyTitleState {
+  /* font-weight: 1000000; */
+  /* font-size: 100px; */
+  font-weight: bolder;
+  /* color: green; */
+}
 #sankeyLabels {
   margin-bottom: -5rem;
 }
@@ -342,4 +374,8 @@ body {
 
 .arrowText {
   font-family: "Quicksand", sans-serif;
+}
+
+#returnForceBtn {
+  margin-left: 10%;
 }
