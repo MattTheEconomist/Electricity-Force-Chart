@@ -51,7 +51,7 @@ function formatNumberString(rank) {
   if (lastDigit === "3") {
     suffix = "rd";
   }
-  if (numberString === "11" || numberString === "12") {
+  if (numberString === "11" || numberString === "12" || numberString === "13") {
     suffix = "th";
   }
 

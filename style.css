@@ -398,3 +398,9 @@ body {
   font-family: "Quicksand", sans-serif;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
 }
+
+#sourceInfo {
+  margin-top: 4%;
+  font-family: "Quicksand", sans-serif;
+  font-size: small;
+}
