@@ -32,6 +32,7 @@
   padding-left: 1%;
   padding-right: 1%;
   margin-left: -1%;
+  font-family: "Quicksand", sans-serif;
 }
 
 #forceViz {
@@ -86,7 +87,15 @@
 .groupingBtn:focus {
   background-color: #b89c9c;
 }
-
+#doubleClickText {
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  width: 800px;
+  justify-content: center;
+  margin-top: 1%;
+  padding-left: 5%;
+  font-weight: bold;
+}
 #allVizContainer {
   margin-left: 10%;
   width: 100vw;
@@ -269,6 +278,7 @@ body {
 .stateNameTooltip {
   color: rgb(23, 5, 71);
   font-weight: bold;
+  width: 150px;
 }
 
 .link {
@@ -322,7 +332,7 @@ body {
   flex-direction: row;
   background-color: #7df7f7;
   border: 1px solid black;
-  margin-top: 5%;
+  margin-top: 5.5%;
   /* margin-right: -10px; */
   /* margin-left: -10px; */
 }
@@ -377,5 +387,14 @@ body {
 }
 
 #returnForceBtn {
-  margin-left: 10%;
+  margin-left: 50%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  height: 40px;
+  width: 200px;
+  font-size: 15px;
+  border-radius: 2px;
+  background-color: beige;
+  font-family: "Quicksand", sans-serif;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
 }

@@ -35,8 +35,8 @@ export function graphRankings(column, State, svgSelector) {
     .select("body")
     .append("div")
     .attr("class", "rankTooltip")
-    .style("width", "100px")
-    .style("height", "100px")
+    .style("width", "150px")
+    .style("height", "50px")
     .style("position", "absolute")
     .style("opacity", 0);
 
@@ -146,7 +146,7 @@ function tooltipRankText(d, column) {
   if (column === "electric_cleanliness") {
     quantity = d.electric_cleanliness;
     quantity = Math.round(quantity);
-    return `<span class="stateNameTooltip">${state}</span> </br>has electric cleanliness of ${quantity} C02/BTU`;
+    return `<span class="stateNameTooltip">${state}</span> </br> produces ${quantity} C02 per BTU`;
   }
 
   // return `${state} ${units} of ${quantity} `;

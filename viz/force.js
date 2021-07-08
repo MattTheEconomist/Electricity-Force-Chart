@@ -29,6 +29,8 @@ let simulation = d3.forceSimulation(stateData);
 runForceSimulation();
 
 function runForceSimulation() {
+  d3.select("#forceViz").remove();
+
   simulation
     // .forceSimulation(testData)
     .force("charge", d3.forceManyBody().strength(1.8))
@@ -104,9 +106,17 @@ function runForceSimulation() {
         .style("left", d3.event.pageX + 5 + "px")
         .style("top", d3.event.pageY - 50 + "px")
         .html(forceTooltipText(d));
+
+      const hoveredBubble = d3.select(`#${d.State}`);
+
+      hoveredBubble.attr("stroke-width", 3).attr("stroke", "#4d4d4d");
     })
-    .on("mouseout", () => {
+    .on("mouseout", (d) => {
       forceTooltip.style("opacity", 0);
+
+      const unHoveredBubble = d3.select(`#${d.State}`);
+
+      unHoveredBubble.attr("stroke-width", 0);
     });
 
   //Every time the simulation "ticks", this will be called
@@ -121,6 +131,8 @@ function runForceSimulation() {
         return d.y;
       });
   }
+
+  simulation.alpha(0.7).restart();
 
   function forceTooltipText(d) {
     forceTooltip.style("background-color", "white");
@@ -143,7 +155,6 @@ function runForceSimulation() {
   </table>`;
   }
 
-  simulation.alpha(0.7).restart();
   // textFunctionCall[groupDefault]();
 }
 
@@ -163,20 +174,9 @@ function changeGrouping(el) {
   simulation.force("y").initialize(stateData);
 }
 
-const defaultEl = document.getElementById("groupDefault");
-
-console.log(defaultEl);
-
 function changeGroupingDefault() {
+  const defaultEl = document.getElementById("groupDefault");
   changeGrouping(defaultEl);
-
-  // textFunctionCall.groupDefault();
-  // console.log(textFunctionCall["groupDefault"]());
-  // console.log(Object.values(textFunctionCall)[0]());
-  // console.log(textFunctionCall.groupDefault());
-  // simulation.alpha(0.7).restart();
-  // simulation.force("x").initialize(stateData);
-  // simulation.force("y").initialize(stateData);
 }
 
 export {

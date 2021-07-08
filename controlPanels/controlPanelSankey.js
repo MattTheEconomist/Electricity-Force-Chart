@@ -3,7 +3,11 @@ import { sankeyPreProcessing } from "../data/sankeyDataPreProcessing.js";
 import { sankeyGraphOptions } from "../graphDimensions/graphDimensionsSankey.js";
 import { graphRankings } from "../viz/rankingsGraphs.js";
 import { rankingsTextFunc } from "./rankingsGraphText.js";
-import { runForceSimulation, changeGroupingDefault } from "../viz/force.js";
+import {
+  runForceSimulation,
+  changeGroupingDefault,
+  simulation,
+} from "../viz/force.js";
 
 const sankeyContainer = document.getElementById("cornerSankey");
 const powerContainer = document.getElementById("totalPowerContainer");
@@ -21,9 +25,11 @@ google.charts.load("current", { packages: ["sankey"] });
 
 google.charts.setOnLoadCallback(drawChartSankey);
 
-const allStateNames = stateData.map((row) => row.name);
+let allStateNames = stateData.map((row) => row.name);
 
 allStateNames.sort((a, b) => (a === b ? 0 : a < b ? -1 : 1));
+
+allStateNames.unshift("--state--");
 
 let dropdownContainer = document.getElementById("dropdownContainer");
 
@@ -53,26 +59,14 @@ returnForceButton.addEventListener("click", () => {
     .duration(1500)
     .style("opacity", 0);
 
-  // simulation.restart();
-
   setTimeout(() => {
-    d3.select("#entireSankeyContainer")
-      .classed("hideMe", true)
-      .style("opacity", 0);
-
-    d3.select("#entireForceContainer")
-      .classed("hideMe", false)
-      .style("opacity", 1);
-
-    d3.select("#forceViz").remove();
-
-    runForceSimulation();
-    changeGroupingDefault();
+    location.reload();
   }, 1500);
 });
 
 Array.from(circleSelector).forEach(function (element) {
   element.addEventListener("dblclick", () => {
+    // element.addEventListener("click", () => {
     zoomForceChart(element);
     updateAllSankeyComponents();
   });
