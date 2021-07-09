@@ -1,5 +1,7 @@
 import { stateData } from "../data/stateData.js";
 
+import { rankingsTextFunc } from "../controlPanels/rankingsGraphText.js";
+
 const graphMargin = { top: 20, right: 20, bottom: 70, left: 40 };
 const graphDimensions_rankings = {
   //   height: 150,
@@ -45,6 +47,7 @@ export function graphRankings(column, State, svgSelector) {
     .data(stateDataSorted)
     .enter()
     .append("rect")
+    .attr("id", (d) => d.State)
     .attr("x", (d, i) => i * graphDimensions_rankings.barToBar)
     .attr("fill", (d) => {
       if (d.State === State) {
