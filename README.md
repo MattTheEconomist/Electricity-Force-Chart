@@ -7,3 +7,8 @@ This project is an interactive visualization of every US state's electricity. It
 For a deeper dive, users can double-click any state's bubble for more visualizations on that state. Double-clicking a bubble reveals a sankey chart displaying all forms of electricity generation and consumption for that state. This page also shows how this state compares to others in terms of both total electricity consumption and the cleanliness of that electricity. The sankey chart looks like this:
 
 ![Sankey Chart Image](sankeyPic.png?raw=true "Title")
+![Sankey Chart Image](../sankeyPic.png?raw=true "Title")
+![Sankey Chart Image](./sankeyPic.png?raw=true "Title")
+![Sankey Chart Image](sankeyPic.png "Title")
+![Sankey Chart Image](../sankeyPic.png "Title")
+![Sankey Chart Image](./sankeyPic.PNG "Title")
